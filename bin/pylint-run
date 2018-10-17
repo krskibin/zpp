@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker-compose exec backend pylint -d RP0401,RP0101,RP0701 --ignore-patterns migrations --load-plugins pylint_django --rcfile=/usr/src/app/.pylintrc $@

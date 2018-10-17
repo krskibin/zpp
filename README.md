@@ -22,23 +22,21 @@ zpp
 │   docker-compose.yml
 |
 └───backend
-│   │   # Python Django project (otracker)
+│   │   # Python project files
 │   │
-│   └───api
-│   |
-|   └───zpp
+│   └───src
+|       |    # Django app files
 |
 └───frontend
 |   │   # Vue Yarn project
 |   │
-│   └───src
-|   │   │   # Vue project files
+│   └───src # Vue project files
 |
 └───bin
-|   │   #  Running Scripts (docker, backend, eslint, etc...)
+|   │   # Running Scripts (docker, backend, eslint, etc...)
 |
 └───scripts
-|   |	Database fill script
+|   |   #Database fill script
 ```
 
 #### Templates
@@ -50,17 +48,29 @@ zpp
 
 1. [Docker](https://docs.docker.com/engine/installation)
 2. [Docker Compose](https://docs.docker.com/compose/install)
-3. [Node.js](https://nodejs.org/en/download/package-manager/) (Optional)
-4. [Yarn](https://yarnpkg.com/en/)* (Optional)
 
 ---
 ## Installation
 
 1. Install all dependancies and go to project root directory using bash console
-2. Build Docker container: run `docker-compose up --build` command
+2. Use `cp .env.template .env`, to copy environment
+3. Build Docker container: run `docker-compose up --build` command
 4. Run project using `docker-compose up` command
 5. Apply Django migrations using `bin/migrate` command
-6. Create Django superuser: `bin/backend-bash`, then `./manage.py createsuperuser` and follow the instructions
-7. In your browser go to:
+7. Create Django superuser: `bin/backend-bash`, then `./manage.py createsuperuser` and follow the instructions
+8. In your browser go to:
    1. localhost:8000 —> Backend API
    2. localhost:8080 —> Frontend app
+
+## Commands
+
+**All commands working only in base project directory !**
+
+| Command               | Usage                                    |
+| --------------------- | ---------------------------------------- |
+| bin/build             | Builds project Docker container          |
+| bin/backend-bash      | Access to bash in backend container      |
+| bin/backend-shell     | Access to django-shell in backend        |
+| bin/migrate           | Applies Djnago database migrations       |
+| bin/makemigrations    | Creates migration files for new models   |
+| bin/pylint-run [path] | Runs python lint checker                 |

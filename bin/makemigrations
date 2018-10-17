@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+docker-compose exec backend bash -c \
+'python3 manage.py makemigrations && '\
+'python3 manage.py makemigrations api'
