@@ -34,12 +34,13 @@ services:
       args:
         - proxy=${PROXY}
     tty: true
-    command: yarn serve
+    command: yarn run dev
     ports:
         - 0.0.0.0:${FRONTEND_PORT}:8080
     volumes:
-      - ./frontend/public:/usr/src/app/public
       - ./frontend/src:/usr/src/app/src
+      - ./frontend/build:/usr/src/app/build
+      - ./frontend/public:/usr/src/app/public
       - ./frontend/babel.config.js:/usr/src/app/babel.config.js
       - ./frontend/package.json:/usr/src/app/package.json
       - ./frontend/package-lock.json:/usr/src/app/package-lock.json
