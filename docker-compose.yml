@@ -24,6 +24,8 @@ services:
       - ./backend/src:/usr/src/app/backend/src
       - ./backend/.pylintrc:/usr/src/app/.pylintrc
       - ./scripts:/usr/src/app/scripts
+    ports:
+      - "8000:8000"
 
 
   frontend:
