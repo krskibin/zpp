@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h4>Click on "About" link to see how fetching data from backend works -></h4>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
   </div>

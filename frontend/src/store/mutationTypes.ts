@@ -1,0 +1,1 @@
+export const TEST_OBJECTS = 'OBJECTS_TEST_OBJECTS';
