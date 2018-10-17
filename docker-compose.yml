@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:9.6.10
+    env_file: .env
+    volumes:
+      - .pgdata:/var/lib/postgresql/data
+
+
+  backend:
+    env_file: .env
+    build:
+      context: ./backend
+      args:
+        - PROXY=${PROXY}
+    stdin_open: true
+    tty: true
+    command: ./manage.py runserver 0.0.0.0:8000
+    entrypoint: wait-for-it.sh db:5432 --
+    depends_on:
+      - db
+    volumes:
+      - ./backend/src:/usr/src/app/backend/src
+      - ./backend/.pylintrc:/usr/src/app/.pylintrc
+      - ./scripts:/usr/src/app/scripts
+
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - proxy=${PROXY}
+    tty: true
+    command: yarn serve
+    ports:
+        - 0.0.0.0:${FRONTEND_PORT}:8080
+    volumes:
+      - ./frontend/public:/usr/src/app/public
+      - ./frontend/src:/usr/src/app/src
+      - ./frontend/babel.config.js:/usr/src/app/babel.config.js
+      - ./frontend/package.json:/usr/src/app/package.json
+      - ./frontend/package-lock.json:/usr/src/app/package-lock.json
+      - ./frontend/tsconfig.json:/usr/src/app/tsconfig.json
+      - ./frontend/tslint.json:/usr/src/app/tslint.json
