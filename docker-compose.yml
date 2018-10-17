@@ -34,7 +34,7 @@ services:
       args:
         - proxy=${PROXY}
     tty: true
-    command: yarn run dev
+    command: npm run serve
     ports:
         - 0.0.0.0:${FRONTEND_PORT}:8080
     volumes:
@@ -42,6 +42,7 @@ services:
       - ./frontend/build:/usr/src/app/build
       - ./frontend/public:/usr/src/app/public
       - ./frontend/babel.config.js:/usr/src/app/babel.config.js
+      - ./frontend/vue.config.js:/usr/src/app/vue.config.js
       - ./frontend/package.json:/usr/src/app/package.json
       - ./frontend/package-lock.json:/usr/src/app/package-lock.json
       - ./frontend/tsconfig.json:/usr/src/app/tsconfig.json
