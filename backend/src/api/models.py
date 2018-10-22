@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 
-Rating_scale = (
+RATING_SCALE = (
     (1, 'Awful'),
     (2, 'Not good'),
     (3, 'Average'),
@@ -9,29 +9,30 @@ Rating_scale = (
     (5, 'Best Place EVER')
 )
 
+
 class Feature(models.Model):
     name = ""
+
 
 class Wifi(Feature):
     name = "WiFi"
 
+
 class DogsAllowed(Feature):
     name = "Dogs Allowed"
+
 
 class Toilet(Feature):
     name = "Toilet"
 
+
 class ChangingRoom(Feature):
     name = "Changing Room"
 
-class Test(models.Model):
-
-    id = models.AutoField(primary_key=True)
-    test = models.CharField(max_length=40, default='test')
 
 class Address(models.Model):
-    country = models.CharField(max_length=40, default='Wroclaw')
-    city = models.CharField(max_length=40)
+    country = models.CharField(max_length=40, default='Poland')
+    city = models.CharField(max_length=40, default='Wroclaw')
     street = models.CharField(max_length=70)
     localNumber = models.CharField(max_length=5)
     postcode = models.CharField(max_length=6)
@@ -40,7 +41,7 @@ class Address(models.Model):
 class Restaurant(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, default='Restaurant name')
-    longitude = models.DecimalField(max_digits=9, decimal_places=6) #Position of restaurant on the map
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)   # Position of restaurant on the map
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='address')
     foodType = models.CharField(max_length=40, default='Kuchnia polska')
@@ -54,13 +55,14 @@ class Restaurant(models.Model):
 
 class Review(models.Model):
     id = models.AutoField(primary_key=True)
-    rating = models.PositiveIntegerField(default=1, choices=list(zip(range(1, 5), range(1, 5))))
+    rating = models.PositiveIntegerField(default=1, choices=RATING_SCALE)
     review = models.TextField()
+
 
 class Opinion(models.Model):
     id = models.AutoField(primary_key=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='restaurant')
-    #user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='%(class)s')
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='%(class)s')
     date = models.DateField(default=datetime.date.today)
     foodReview = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='foodReview')
     climateReview = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='climateReview')

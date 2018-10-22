@@ -8,7 +8,7 @@ schema_view = get_schema_view(title="ZPP API")
 
 api_urls = [
     path('', schema_view),
-    path('test/', include('api.urls')),
+    path('v1/', include('api.urls')),
 ]
 
 urlpatterns = [
