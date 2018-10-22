@@ -1,9 +1,15 @@
 from rest_framework import serializers
 
-from .models import Test
+from .models import Restaurant, Review
 
 
-class TestSerializer(serializers.ModelSerializer):
+class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Test
+        model = Restaurant
+        fields = '__all__'
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
         fields = '__all__'

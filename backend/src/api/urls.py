@@ -4,10 +4,11 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 from . import views
 
-app_name = 'forms'
+app_name = 'api'
 
 router = SimpleRouter()
-router.register('', views.TestViewSet, '')
+router.register('restaurants', views.RestaurantViewSet, 'restaurants')
+router.register('reviews', views.ReviewViewSet, 'reviews')
 
 urlpatterns = [
     path('', include(router.urls)),
