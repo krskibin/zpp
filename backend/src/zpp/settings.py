@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'api',
+    'users',
     'common',
 ]
 
@@ -67,6 +68,8 @@ DATABASES = {
         'PORT': os.environ['DB_PORT']
     }
 }
+
+AUTH_USER_MODEL = 'users.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

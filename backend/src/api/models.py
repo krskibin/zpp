@@ -49,7 +49,7 @@ class Restaurant(models.Model):
     price_rating = models.DecimalField(max_digits=3, decimal_places=2)
     vegan_option = models.BooleanField(default=False)
     vegetarian_option = models.BooleanField(default=False)
-    features = models.ForeignKey(Feature, on_delete=models.CASCADE, related_name='features')
+    # features = models.ForeignKey(Feature, on_delete=models.CASCADE, related_name='features')
     short_review = models.CharField(max_length=300, default='Short Review')
 
 
