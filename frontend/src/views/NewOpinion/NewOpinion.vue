@@ -27,7 +27,6 @@
     </el-row>
     <el-button>Dodaj</el-button>
   </div>
-
 </template>
 
 <script>
