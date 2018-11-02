@@ -1,19 +1,26 @@
 <template>
-    <div class="home">
-        <RestaurantList/>
-    </div>
+  <div class="home">
+    <RestaurantList :restaurants="restaurants"/>
+  </div>
 </template>
 
 <script lang="ts">
-    import 'element-ui/lib/theme-chalk/index.css'
-    import {Component, Vue} from 'vue-property-decorator';
-    import RestaurantList from '../../components/restaurantList/RestaurantList'
+import {Component, Vue} from 'vue-property-decorator';
+import { Getter, Action } from 'vuex-class';
 
-    @Component({
-        components: {
-            RestaurantList
-        },
-    })
-    export default class Home extends Vue {
-    }
+import RestaurantList from '@/components/restaurantList/RestaurantList.vue';
+
+@Component({
+  components: {
+    RestaurantList,
+  },
+})
+export default class Home extends Vue {
+  @Action('getRestaurants') getRestaurants: any;
+  @Getter('getRestaurantList') restaurants: any;
+
+  private created() {
+    this.getRestaurants();
+  }
+}
 </script>

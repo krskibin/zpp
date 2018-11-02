@@ -15,5 +15,5 @@ export const routes = [
         path: '/newOpinion',
         name: '/newOpinion',
         component: () => import('../views/NewOpinion/NewOpinion.vue'),
-    }
+    },
 ];
