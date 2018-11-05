@@ -1,26 +1,12 @@
 <template>
     <div id="app">
     <router-view/>
-           <div class="leftMenu">
-                <i class="material-icons">
-                    search
-                </i>
-               <i class="material-icons">
-                   <router-link class="addLink" to="/newOpinion">
-                        add
-                   </router-link>
-                </i>
-               <i class="material-icons">
-                    visibility
-               </i>
-        </div>
     </div>
 </template>
 
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css?family=Open+Sans');
     body {
-        position: fixed;
         margin: 0;
         height: 100%;
         width: 100%;

@@ -1,51 +1,24 @@
 <template>
-  <el-table
-    :data="tableData"
-    style="width: 100%">
-
-    <el-table-column
-      label="Nazwa"
-      width="180">
-      <template slot-scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.name }}</span>
-      </template>
-    </el-table-column>
-
-    <el-table-column
-      label="Adres"
-      width="300">
-      <template slot-scope="scope">
-        <span style="margin-left: 10px">{{ scope.row.address }}</span>
-      </template>
-    </el-table-column>
-
-    <el-table-column
-      label="Ocena"
-      width="300">
-      <template slot-scope="scope">
-        <span style="margin-left: 10px">
-          <el-rate
-            v-model="scope.row.avgRating"
-            disabled
-            show-score
-            text-color="#ff9900"
-            score-template="{value} points">
-          </el-rate>
-        </span>
-      </template>
-    </el-table-column>
-
-    <el-table-column
-      label="Dodaj opinię">
-      <template slot-scope="scope">
-        <el-button
-          size="mini"
-          @click="handleEdit(scope.$index, scope.row)">Dodaj opinię
-        </el-button>
-      </template>
-    </el-table-column>
-
-  </el-table>
+  <div class="container"
+    :data="tableData">
+   <el-row :gutter="10">
+      <el-col :span="6" offset="1">
+        <div class="containerRestaurant">
+          <div class="titleOpinion"> Nazwa
+            <template slot-scope="scope">
+              {{ scope.row.name }}
+            </template>
+            <a>Pokaż opinię</a>
+          </div>
+          <div class="opinionText">
+            Zamówiliśmy kaczkę, kilka dań z kurczaka oraz zupy. Kaczka była po prostu rewelacyjna:
+            idealnie zrobiona podana z pure ziemiaczano truflowym. Kurczak niestety był bardzo twardy ale szef kuchni zaproponował,
+            że zrobi go jeszcze raz. Zupy ok, choć rosół przypominał bardziej orientalna zupę z kurczakiem.
+          </div>
+        </div>
+      </el-col>
+   </el-row>
+  </div>
 </template>
 
 <script>
@@ -68,3 +41,35 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+    .containerRestaurant {
+        width: 100%;
+        border-radius: 5px;
+        border: solid 2px #d8d8d8;
+        background-color: #ffffff;
+        margin: 10px;
+    }
+    .container {
+        margin-left: 20%;
+        margin-right: 15%;
+    }
+    .titleOpinion{
+        padding: 10px;
+        border-bottom: solid 2px #dddddd;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: left;
+        :last-child{
+            float: right;
+        }
+    }
+    .opinionText{
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+    }
+</style>
