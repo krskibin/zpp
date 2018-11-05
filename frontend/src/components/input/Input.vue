@@ -1,5 +1,5 @@
 <template>
-  <el-col :span="10">
+  <el-col :span="8" :offset="8">
     <el-input
       placeholder="Please input"
       v-model="inputValue"
