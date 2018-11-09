@@ -27,10 +27,6 @@
     </el-row>
     <el-button>Dodaj</el-button>
   </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> Demo view app (#2)
 </template>
 
 <script>
