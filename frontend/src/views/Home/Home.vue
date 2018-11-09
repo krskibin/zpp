@@ -30,7 +30,7 @@
     import {Getter, Action} from 'vuex-class';
 
     import RestaurantList from '@/components/restaurantList/RestaurantList.vue';
-    import Input from '@/components/input/Input';
+    import Input from '@/components/input/Input.vue';
 
     @Component({
         components: {
