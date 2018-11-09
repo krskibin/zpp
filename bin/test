@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+nc -z -v -w5 localhost 8000 2>/dev/null &&
+
+result1=$?
+
+if [  "$result1" != 0 ]; then
+  echo "Backend test failed"
+  exit 1
+else
+  echo "Backend test passed"
+fi
+
+nc -z -v -w5 localhost 8080
+result2=$?
+
+if [  "$result2" != 0 ]; then
+  echo "Frontend test failed"
+  exit 1
+else
+  echo "Frontend test passed"
+  exit 0
+fi
