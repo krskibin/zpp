@@ -37,7 +37,6 @@ import Input from '@/components/input/Input.vue';
         RestaurantList, Input,
     },
 })
-
 export default class Home extends Vue {
     @Action('getRestaurants') getRestaurants: any;
     @Getter('getRestaurantList') restaurants: any;
