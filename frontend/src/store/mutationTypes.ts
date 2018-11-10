@@ -5,3 +5,4 @@ export const AUTH_SAVE_INFO = 'AUTH_SAVE_INFO';
 
 // RESTAURANT types
 export const RESTAURANTS_LIST = 'RESTAURANTS_LIST';
+export const REVIEWS_LIST = 'REVIEWS_LIST';
