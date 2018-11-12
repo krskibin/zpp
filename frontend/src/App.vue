@@ -1,16 +1,32 @@
 <template>
     <div id="app">
     <router-view/>
+    <el-menu default-active="1" class="el-menu-vertical" :collapse="true">
+      <el-menu-item index="1">
+          <i class="el-icon-search"></i>
+          <span slot="title">Szukaj</span>
+      </el-menu-item>
+      <el-menu-item index="2">
+        <i class="el-icon-plus"></i>
+        <span slot="title">Dodaj opinię</span>
+      </el-menu-item>
+      <el-menu-item index="3" id="last">
+        <i class="el-icon-view"></i>
+        <span slot="title">Mój profil</span>
+      </el-menu-item>
+    </el-menu>
     </div>
 </template>
 
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
     body {
         margin: 0;
         height: 100%;
         width: 100%;
     }
+
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -19,36 +35,17 @@
         color: #2c3e50;
     }
 
-    #nav {
-        padding: 30px;
-        a {
-            font-weight: bold;
-            color: #2c3e50;
-            &.router-link-exact-active {
-                color: #1E90FF;
-            }
-        }
+    .el-menu {
+      width: 64px;
+      top: 0;
+      left: 0;
+      height: 100%;
+      position: absolute !important;
     }
-    .leftMenu {
-        background-color: white;
-        position: absolute;
-        border-right: solid 1px #979797;
-        height: 100%;
-        padding: 25px;
-        top: 0;
-        left: 0;
+
+    #last {
     }
-    .leftMenu {
-        .material-icons {
-            display: block;
-            font-size: 30px;
-            color: var(--brown-grey);
-            margin-bottom: 20px;
-        }
-        :last-child {
-            bottom: 70px;
-            position: absolute;
-        }
-    }
+
+
 
 </style>
