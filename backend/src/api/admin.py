@@ -11,8 +11,13 @@ class ReviewAdmin(admin.ModelAdmin):
     pass
 
 
+class AddressItemInline(admin.TabularInline):
+    model = Address
+
+
 class RestaurantAdmin(admin.ModelAdmin):
     pass
+    #inlines = [AddressItemInline]
 
 
 class AddressAdmin(admin.ModelAdmin):
@@ -23,4 +28,3 @@ admin.site.register(Opinion, OpinionAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Restaurant, RestaurantAdmin)
 admin.site.register(Address, AddressAdmin)
-

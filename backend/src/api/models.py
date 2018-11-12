@@ -9,6 +9,14 @@ RATING_SCALE = (
     (5, 'Best Place EVER')
 )
 
+FEATURES_CHOICES = (
+    ('WiFi', 'WiFi'),
+    ('Toliet', 'Toliet'),
+    ('Dogs allowed', 'Dogs allowed'),
+    ('Climatization', 'Climatization'),
+    ('Outdoor tabkle', 'Outdoor tabkle')
+)
+
 
 class Feature(models.Model):
     name = ""
@@ -41,17 +49,15 @@ class Address(models.Model):
 class Restaurant(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, default='Restaurant name')
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)   # Position of restaurant on the map
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)  # Position of restaurant on the map
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='address')
     food_type = models.CharField(max_length=40, default='Kuchnia polska')
-    avg_rating = models.DecimalField(max_digits=3, decimal_places=2)
     price_rating = models.DecimalField(max_digits=3, decimal_places=2)
     vegan_option = models.BooleanField(default=False)
     vegetarian_option = models.BooleanField(default=False)
-    # features = models.ForeignKey(Feature, on_delete=models.CASCADE, related_name='features')
+    features = models.PositiveIntegerField(choices=FEATURES_CHOICES)
     short_review = models.CharField(max_length=300, default='Short Review')
-
 
 class Review(models.Model):
     id = models.AutoField(primary_key=True)
