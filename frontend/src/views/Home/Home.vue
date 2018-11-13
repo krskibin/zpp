@@ -80,7 +80,7 @@ export default class Home extends Vue {
         height: 100%;
         opacity: 0.1;
         top: 0;
-        left: 0;
+        left: 65px;
     }
 
     .backgroundImage:before {

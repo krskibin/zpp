@@ -17,8 +17,13 @@ export const routes = [
     component: () => import('../views/NewOpinion/NewOpinion.vue'),
   },
   {
+    path: '/profile',
+    name: 'userProfile',
+    component: () => import('../views/Profile/UserProfile.vue'),
+  },
+  {
     path: '*',
-    name: 'new',
+    name: 'notFound',
     component: () => import('../views/Other/NotFound.vue'),
   },
 ];

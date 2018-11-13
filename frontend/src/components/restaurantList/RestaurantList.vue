@@ -14,6 +14,12 @@
             Zamówiliśmy kaczkę, kilka dań z kurczaka oraz zupy. Kaczka była po prostu rewelacyjna:
             idealnie zrobiona podana z pure ziemiaczano truflowym. Kurczak niestety był bardzo twardy ale szef kuchni zaproponował,
             że zrobi go jeszcze raz. Zupy ok, choć rosół przypominał bardziej orientalna zupę z kurczakiem.
+            Zamówiliśmy kaczkę, kilka dań z kurczaka oraz zupy. Kaczka była po prostu rewelacyjna:
+            idealnie zrobiona podana z pure ziemiaczano truflowym. Kurczak niestety był bardzo twardy ale szef kuchni zaproponował,
+            że zrobi go jeszcze raz. Zupy ok, choć rosół przypominał bardziej orientalna zupę z kurczakiem.
+            Zamówiliśmy kaczkę, kilka dań z kurczaka oraz zupy. Kaczka była po prostu rewelacyjna:
+            idealnie zrobiona podana z pure ziemiaczano truflowym. Kurczak niestety był bardzo twardy ale szef kuchni zaproponował,
+            że zrobi go jeszcze raz. Zupy ok, choć rosół przypominał bardziej orientalna zupę z kurczakiem.
           </div>
         </div>
       </el-col>
