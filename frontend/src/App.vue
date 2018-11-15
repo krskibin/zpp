@@ -64,54 +64,52 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+html {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
 
-  html {
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }
-  
-  body {
-    height: 100%;
-    margin: 0
-  }
+body {
+  height: 100%;
+  margin: 0
+}
 
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    height: 100%;
-  }
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  height: 100%;
+}
 
-  .app-root-container {
-    position: flex;
-    height: 100%;
-  }
+.app-root-container {
+  position: flex;
+  height: 100%;
+}
 
-  .app-aside {
-    height: 100%;
-    width: 66px !important;
-  }
+.app-aside {
+  height: 100%;
+  width: 66px !important;
+}
 
-  .app-menu-vertical  {
-    width: 65px;
-    height: 100%;
-    height: 100%;
+.app-menu-vertical  {
+  width: 65px;
+  height: 100%;
+  height: 100%;
 
-    .menu-elements-wrapper {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+  .menu-elements-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
+}
 
-  .app-main {
-    margin: 0;
-    padding: 0px 0px !important;
-  }
+.app-main {
+  margin: 0;
+  padding: 0px 0px !important;
+}
 
 </style>

@@ -35,6 +35,11 @@ export const routes = [
     component: () => import('../views/Profile/UserLogin.vue'),
   },
   {
+    path: '/restaurant/:id',
+    name: 'viewRestaurant',
+    component: () => import('../views/RestaurantView/RestaurantView.vue'),
+  },
+  {
     path: '*',
     name: 'notFound',
     component: () => import('../views/Other/NotFound.vue'),

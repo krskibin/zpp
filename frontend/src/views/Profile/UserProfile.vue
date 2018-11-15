@@ -14,8 +14,7 @@ export default class UserProfile extends Vue {
   @Getter('getUserInfo') getUserInfo: any;
 
   get userInfo(): any {
-    debugger
-    return this.$store.state.auth
+    return this.$store.state.auth;
   }
 }
 </script>
