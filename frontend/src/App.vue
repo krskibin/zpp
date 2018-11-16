@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-aside class="menu">
-        <el-menu class="el-menu-vertical"
+    <el-container class="app-root-container">
+      <el-aside class="app-aside">
+        <el-menu class="app-menu-vertical"
                  :collapse="true"
                  default-active="/"
                  @select="handleSelect">
@@ -22,10 +22,11 @@
               <span slot="title">Mój profil</span>
             </el-menu-item>
           </div>
-
         </el-menu>
       </el-aside>
-      <router-view/>
+      <el-main class="app-main">
+        <router-view />
+      </el-main>
     </el-container>
   </div>
 </template>
@@ -44,10 +45,15 @@ export default {
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-  body {
+  html {
     margin: 0;
     height: 100%;
     width: 100%;
+  }
+  
+  body {
+    height: 100%;
+    margin: 0
   }
 
   #app {
@@ -56,27 +62,35 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    height: 100%;
   }
 
-  .menu {
+  .app-root-container {
+    position: flex;
+    height: 100%;
+  }
+
+  .app-aside {
+    height: 100%;
+    width: 66px !important;
+  }
+
+  .app-menu-vertical  {
     width: 65px;
     height: 100%;
-    position: fixed;
-  }
-
-  .menu-elements-wrapper {
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+
+    .menu-elements-wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
   }
 
-  .el-menu-vertical  {
-    height: 100%;
-  }
-
-  #last {
-    margin-bottom: 80%;
+  .app-main {
+    margin: 0;
+    padding: 0px 0px !important;
   }
 
 </style>
