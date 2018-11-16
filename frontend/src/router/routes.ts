@@ -20,6 +20,19 @@ export const routes = [
     path: '/profile',
     name: 'userProfile',
     component: () => import('../views/Profile/UserProfile.vue'),
+    meta: {
+      auth: true,
+    },
+  },
+  {
+    path: '/register',
+    name: 'userRegister',
+    component: () => import('../views/Profile/UserRegister.vue'),
+  },
+  {
+    path: '/login',
+    name: 'userLogin',
+    component: () => import('../views/Profile/UserLogin.vue'),
   },
   {
     path: '*',

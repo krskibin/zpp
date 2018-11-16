@@ -1,12 +1,12 @@
 <template>
-  <h1>Profile</h1>
+  <h1>Register</h1>
 </template>
 
 <script lang="ts">
 import {Vue} from 'vue-property-decorator';
 
-export default class UserProfile extends Vue {
-  name = 'user-profile';
+export default class UserRegister extends Vue {
+  name = 'user-register';
 }
 </script>
 

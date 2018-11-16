@@ -30,17 +30,17 @@ import RestaurantList from '@/components/restaurantList/RestaurantList.vue';
 import Input from '@/components/input/Input.vue';
 
 @Component({
-    components: {
-        RestaurantList, Input,
-    },
+  components: {
+    RestaurantList, Input,
+  },
 })
 export default class Home extends Vue {
-    @Action('getRestaurants') getRestaurants: any;
-    @Getter('getRestaurantList') restaurants: any;
+  @Action('getRestaurants') getRestaurants: any;
+  @Getter('getRestaurantList') restaurants: any;
 
-    private created() {
-        this.getRestaurants();
-    }
+  private created() {
+    this.getRestaurants();
+  }
 }
 </script>
 
