@@ -1,25 +1,13 @@
 <template>
-<div>
-  <h1>Login</h1>
-  <Form>
-	<FormField label="Email address" htmlFor="basic-form-input-email">
-		<FormInput autoFocus type="email" placeholder="Enter email" name="basic-form-input-email" />
-	</FormField>
-	<FormField label="Password" htmlFor="basic-form-input-password">
-		<FormInput type="password" placeholder="Password" name="basic-form-input-password" />
-	</FormField>
-	<FormField>
-		<Checkbox label="Check it" />
-	</FormField>
-	<Button submit>Submit</Button>
-</Form>
-</div>
+  <h1>Profile</h1>
 </template>
 
-<script>
-export default {
-  name: 'user-login',
-};
+<script lang="ts">
+import {Vue} from 'vue-property-decorator';
+
+export default class UserProfile extends Vue {
+  name = 'user-profile';
+}
 </script>
 
 <style lang="scss">
