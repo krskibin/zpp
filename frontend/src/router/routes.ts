@@ -21,4 +21,9 @@ export const routes = [
     name: 'new',
     component: () => import('../views/Other/NotFound.vue'),
   },
+    {
+    path: '/restaurant/:id',
+    name: 'viewRestaurant',
+    component: () => import('../views/RestaurantView/RestaurantView.vue'),
+  },
 ];
