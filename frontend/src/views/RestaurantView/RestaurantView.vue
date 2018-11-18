@@ -47,7 +47,6 @@
         </el-row>
         <el-row class="rowOpinions">
             <el-col :span="6" :offset="3">
-                <Opinion/>
             </el-col>
         </el-row>
 
