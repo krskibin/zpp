@@ -53,14 +53,15 @@
         <Opinion/>
       </el-col>
     </el-row>
-
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
+import {Getter, Action} from 'vuex-class';
+
 import Stars from '@/components/stars/Stars.vue';
-import Opinion from '../../components/opinion/Opinion';
+import Opinion from '../../components/opinion/Opinion.vue';
 
 @Component({
   components: {
@@ -69,19 +70,68 @@ import Opinion from '../../components/opinion/Opinion';
   },
 })
 export default class RestaurantView extends Vue {
+  @Action('getRestaurant') getRestaurant: any;
+  @Getter('getRestaurantElement') restaurant: any;
+
+  private created() {
+    this.getRestaurant(this.$route.params.id);
+  }
 }
 </script>
 
-<style lang="scss">
-.centerText {
-  text-align: center;
-}
-
+<style>
 .rowOpinions {
   margin: 10px 0 10px 0;
   :nth-child(2) {
     margin-left: 10px;
     margin-right: 10px;
   }
+}
+
+h1.centerText {
+  margin-top: 100px;
+  margin-bottom: 0;
+  font-size: 56px;
+  font-weight: bold;
+  color: #191a1c;
+}
+
+h3.centerText {
+  margin-top: 16px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #191a1c;
+}
+
+.starsBig {
+  height: 30px !important;
+  margin-bottom: 30px;
+  span {
+    i {
+      font-size: 30px;
+    }
+  }
+}
+
+.buttonStyle {
+  background-color: #f9d3a7 !important;
+  font-size: 20px !important;
+  &:focus, &:hover {
+    color: black !important;
+  }
+}
+
+.addInfo {
+  p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+h2 {
+  margin: 30px 0 30px 0;
+  font-weight: bold;
+  color: #191a1c;
 }
 </style>

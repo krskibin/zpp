@@ -39,4 +39,9 @@ export const routes = [
     name: 'notFound',
     component: () => import('../views/Other/NotFound.vue'),
   },
+    {
+    path: '/restaurant/:id',
+    name: 'viewRestaurant',
+    component: () => import('../views/RestaurantView/RestaurantView.vue'),
+  },
 ];

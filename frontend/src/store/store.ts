@@ -16,6 +16,6 @@ export default new Vuex.Store({
     auth,
     restaurants,
     reviews,
-    restaurant
+    restaurant,
   },
 });
