@@ -1,53 +1,95 @@
 <template>
-    <div id="app">
-    <router-view/>
-    </div>
+  <div id="app">
+    <el-container class="app-root-container">
+      <el-aside class="app-aside">
+        <el-menu class="app-menu-vertical"
+                 :collapse="true"
+                 default-active="/"
+                 @select="handleSelect">
+          <div class="menu-elements-wrapper">
+            <div class="menu-elements-top-section">
+              <el-menu-item index="/">
+                <i class="el-icon-search"></i>
+                <span slot="title">Szukaj</span>
+              </el-menu-item>
+              <el-menu-item index="new-opinion">
+                <i class="el-icon-plus"></i>
+                <span slot="title">Dodaj opinię</span>
+              </el-menu-item>
+            </div>
+            <el-menu-item index="profile" id="last">
+              <i class="el-icon-view"></i>
+              <span slot="title">Mój profil</span>
+            </el-menu-item>
+          </div>
+        </el-menu>
+      </el-aside>
+      <el-main class="app-main">
+        <router-view />
+      </el-main>
+    </el-container>
+  </div>
 </template>
 
-<style lang="scss">
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-    body {
-        margin: 0;
-        height: 100%;
-        width: 100%;
-    }
-    #app {
-        font-family: 'Open Sans';
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        color: #2c3e50;
-    }
+<script>
+export default {
+  methods: {
+    handleSelect(name) {
+      this.$router.push(name);
+    },
+  },
+};
 
-    #nav {
-        padding: 30px;
-        a {
-            font-weight: bold;
-            color: #2c3e50;
-            &.router-link-exact-active {
-                color: #1E90FF;
-            }
-        }
+</script>
+
+<style lang="scss">
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+  html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    height: 100%;
+    margin: 0
+  }
+
+  #app {
+    font-family: 'Open Sans';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  .app-root-container {
+    position: flex;
+    height: 100%;
+  }
+
+  .app-aside {
+    height: 100%;
+    width: 66px !important;
+  }
+
+  .app-menu-vertical  {
+    width: 65px;
+    height: 100%;
+    height: 100%;
+
+    .menu-elements-wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .leftMenu {
-        background-color: white;
-        position: absolute;
-        border-right: solid 1px #979797;
-        height: 100%;
-        padding: 25px;
-        top: 0;
-        left: 0;
-    }
-    .leftMenu {
-        .material-icons {
-            display: block;
-            font-size: 30px;
-            color: var(--brown-grey);
-            margin-bottom: 20px;
-        }
-        :last-child {
-            bottom: 70px;
-            position: absolute;
-        }
-    }
+  }
+
+  .app-main {
+    margin: 0;
+    padding: 0px 0px !important;
+  }
 
 </style>
