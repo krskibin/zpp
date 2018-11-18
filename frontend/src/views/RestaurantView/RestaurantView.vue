@@ -18,15 +18,34 @@
         </el-button>
       </el-col>
     </el-row>
-
     <el-row>
       <el-col :span="10" :offset="3">
-        <h2>Opis restauracji:</h2>
+        <h2>Opis restauracji</h2>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :span="18" :offset="3">
-        <h3>OPIS</h3>
+      <el-col :span="18" :offset="3" class="addInfo">
+        <p>{{restaurant.shortReview}}</p>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="10" :offset="3">
+        <h2>Dodatkowe informacje</h2>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="18" :offset="3" class="addInfo">
+        <p>Dania wegetariańskie: {{restaurant.vegetarianOption ? "Tak" : "Nie"}}</p>
+        <p>Dania wegańskie: {{restaurant.veganOption ? "Tak" : "Nie"}}</p>
+        <p>Dostępna toaleta:</p>
+        <p>Dozwolone psy:</p>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="24"><h2 class="centerText">Opinie o lokalu</h2></el-col>
+    </el-row>
+    <el-row class="rowOpinions">
+      <el-col :span="6" :offset="3">
       </el-col>
     </el-row>
 
