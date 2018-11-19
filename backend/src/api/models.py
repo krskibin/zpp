@@ -17,12 +17,6 @@ FEATURES_CHOICES = (
     ('Outdoor tabkle', 'Outdoor tabkle')
 )
 
-class Address(models.Model):
-    country = models.CharField(max_length=40, default='Poland')
-    city = models.CharField(max_length=40, default='Wroclaw')
-    street = models.CharField(max_length=70)
-    local_number = models.CharField(max_length=5)
-    postcode = models.CharField(max_length=6)
 
 
 class Restaurant(models.Model):
@@ -30,14 +24,29 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=100, default='Restaurant name')
     longitude = models.DecimalField(max_digits=9, decimal_places=6)  # Position of restaurant on the map
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
-    address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='address')
     food_type = models.CharField(max_length=40, default='Kuchnia polska')
-    avg_rating = models.DecimalField(max_digits=3, decimal_places=2)
+    #avg_rating = models.DecimalField(max_digits=3, decimal_places=2)
     price_rating = models.DecimalField(max_digits=3, decimal_places=2)
     vegan_option = models.BooleanField(default=False)
     vegetarian_option = models.BooleanField(default=False)
     short_review = models.CharField(max_length=300, default='Short Review')
 
+    @property
+    def avg_rating(self):
+        opinions = Opinion.objects.filter(restaurant=self)
+        avgRating = 0
+        for opinion in opinions:
+            avgRating += ((opinion.food_review.rating+opinion.climate_review.rating+opinion.staff_review.rating+opinion.price_review.rating)/4)
+        return avgRating/opinions.size
+    
+
+class Address(models.Model):
+    restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE, related_name='address')
+    country = models.CharField(max_length=40, default='Poland')
+    city = models.CharField(max_length=40, default='Wroclaw')
+    street = models.CharField(max_length=70)
+    local_number = models.CharField(max_length=5)
+    postcode = models.CharField(max_length=6)
 
 
 class Review(models.Model):
