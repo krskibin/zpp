@@ -53,11 +53,14 @@ class Restaurant(models.Model):
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='address')
     food_type = models.CharField(max_length=40, default='Kuchnia polska')
+    avg_rating = models.DecimalField(max_digits=3, decimal_places=2)
     price_rating = models.DecimalField(max_digits=3, decimal_places=2)
     vegan_option = models.BooleanField(default=False)
     vegetarian_option = models.BooleanField(default=False)
-    features = models.PositiveIntegerField(choices=FEATURES_CHOICES)
+    features = models.CharField(max_length=40, choices=FEATURES_CHOICES)
     short_review = models.CharField(max_length=300, default='Short Review')
+
+
 
 class Review(models.Model):
     id = models.AutoField(primary_key=True)
