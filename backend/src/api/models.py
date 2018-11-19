@@ -25,11 +25,20 @@ class Restaurant(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6)  # Position of restaurant on the map
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     food_type = models.CharField(max_length=40, default='Kuchnia polska')
-    avg_rating = models.DecimalField(max_digits=3, decimal_places=2)
+    #avg_rating = models.DecimalField(max_digits=3, decimal_places=2)
     price_rating = models.DecimalField(max_digits=3, decimal_places=2)
     vegan_option = models.BooleanField(default=False)
     vegetarian_option = models.BooleanField(default=False)
     short_review = models.CharField(max_length=300, default='Short Review')
+
+    @property
+    def avg_rating(self):
+        opinions = Opinion.objects.filter(restaurant=self)
+        avgRating = 0
+        for opinion in opinions:
+            avgRating += ((opinion.food_review.rating+opinion.climate_review.rating+opinion.staff_review.rating+opinion.price_review.rating)/4)
+        return avgRating/opinions.size
+    
 
 class Address(models.Model):
     restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE, related_name='address')
