@@ -17,27 +17,6 @@ FEATURES_CHOICES = (
     ('Outdoor tabkle', 'Outdoor tabkle')
 )
 
-
-class Feature(models.Model):
-    name = ""
-
-
-class Wifi(Feature):
-    name = "WiFi"
-
-
-class DogsAllowed(Feature):
-    name = "Dogs Allowed"
-
-
-class Toilet(Feature):
-    name = "Toilet"
-
-
-class ChangingRoom(Feature):
-    name = "Changing Room"
-
-
 class Address(models.Model):
     country = models.CharField(max_length=40, default='Poland')
     city = models.CharField(max_length=40, default='Wroclaw')
