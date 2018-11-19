@@ -6,35 +6,36 @@ interface State {
   userId: number | null;
   firstName: string;
   lastName: string;
-  userEmail: string;
+  email: string;
   token: string;
 }
 
 const state: State = {
   userId: null,
-  userEmail: '',
+  email: '',
   firstName: '',
   lastName: '',
   token: localStorage.getItem('token') || '',
 };
 
 const getters = {
-  getUserEmail: (storeState: State) => storeState.userEmail,
+  getUserEmail: (storeState: State) => storeState.email,
   getFirstName: (storeState: State) => storeState.firstName,
   getLastName: (storeState: State) => storeState.lastName,
   getUserId: (storeState: State) => storeState.userId,
   getUserInfo: (storeState: State) => ({
     firstName: storeState.firstName || '',
     lastName: storeState.lastName || '',
+    email: storeState.email || '',
   }),
 };
 
 const actions = {
-  async login(ctx: any, credentials: State) {
+  async login(ctx: any, credentials: any) {
     try {
       const response = await HTTP.post('users/token-auth/', credentials);
       ctx.commit(AUTH_SAVE_USER, {
-        userEmail: credentials.userEmail,
+        email: credentials.email,
         token: response.data.token,
       });
       ctx.dispatch('getUserInfo');
@@ -58,12 +59,12 @@ const actions = {
   },
   async getUserInfo(ctx: any) {
     try {
-      const response = await HTTP.get('users/info/');
+      const response = await HTTP.get('users/user-info/');
       ctx.commit(AUTH_SAVE_INFO, {
         firstName: response.data.firstName,
         lastName: response.data.lastName,
         userId: response.data.id,
-        userEmail: response.data.userEmail,
+        email: response.data.email,
       });
       return {
         success: true,
@@ -105,7 +106,8 @@ const mutations = {
   [AUTH_DELETE_USER](storeState: State) {
     storeState.firstName = '';
     storeState.lastName = '';
-    storeState.userEmail = '';
+    storeState.email = '';
+    storeState.userId = null;
     localStorage.removeItem('username');
     localStorage.removeItem('token');
     HTTP.defaults.headers.common.Authorization = '';

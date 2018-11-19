@@ -36,7 +36,11 @@ import Input from '@/components/input/Input.vue';
 })
 export default class Home extends Vue {
   @Action('getRestaurants') getRestaurants: any;
-  @Getter('getRestaurantList') restaurants: any;
+  @Getter('getRestaurantList') restaurantList: any;
+
+  get restaurants() {
+    return this.restaurantList;
+  }
 
   private created() {
     this.getRestaurants();

@@ -4,5 +4,6 @@ docker-compose exec db psql -U postgres -c "drop schema public cascade"
 docker-compose exec db psql -U postgres -c "create schema public"
 echo 'Successfully removed'
 docker-compose exec backend bash -c './manage.py migrate && ./manage.py createcachetable'
-docker-compose exec backend bash -c "echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin@myproject.com', 'password')\" | python manage.py shell"
+docker-compose exec backend bash -c "echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin@mail.com', 'password')\" | python manage.py shell"
+echo "Created superuser username: admin@mail.com password: password"
 echo "Done"

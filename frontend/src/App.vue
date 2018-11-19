@@ -17,10 +17,16 @@
                 <span slot="title">Dodaj opinię</span>
               </el-menu-item>
             </div>
-            <el-menu-item index="profile" id="last">
-              <i class="el-icon-view"></i>
-              <span slot="title">Mój profil</span>
-            </el-menu-item>
+            <div>
+              <el-menu-item index="profile" id="last">
+                <i class="el-icon-view"></i>
+                <span slot="title">Mój profil</span>
+              </el-menu-item>
+              <el-menu-item v-if="userInfo" @click="logoutUser" id="last">
+                <i class="el-icon-back"></i>
+                <span slot="title">Wyloguj {{userInfo}}</span>
+              </el-menu-item>
+            </div>
           </div>
         </el-menu>
       </el-aside>
@@ -31,15 +37,30 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    handleSelect(name) {
-      this.$router.push(name);
-    },
-  },
-};
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator';
+import {Getter, Action} from 'vuex-class';
 
+
+@Component
+export default class App extends Vue {
+  @Action('logout') logout: any;
+  @Getter('getUserId') getUserInfo: any;
+
+  get userInfo(): any {
+    return this.getUserInfo;
+  }
+
+  handleSelect(name: string) {
+    this.$router.push(name);
+  }
+
+  logoutUser() {
+    this.logout();
+    this.$router.push('login');
+  }
+
+}
 </script>
 
 <style lang="scss">
