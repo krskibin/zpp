@@ -35,7 +35,7 @@
       <el-input class="input" placeholder="Wpisz tytuł recenzji" v-model="input"></el-input>
     </el-row>
     <el-row style="margin-top: 20px;">
-      <el-input class="input" type="textarea" :rows="6" placeholder="Napisz swoją recenzję" v-model="textarea"></el-input>
+      <el-input class="input" type="textarea" :rows="6" placeholder="Napisz swoją recenzję" v-model="opinionForm.textarea"></el-input>
     </el-row>
     <el-row style="margin-top: 30px;">
     <el-col :span="12">
@@ -99,6 +99,25 @@
   </div>
 </template>
 
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator';
+import Input from '../../components/input/Input.vue';
+import Stars from '../../components/stars/Stars.vue';
+
+@Component({
+  components: {
+    Input,
+    Stars,
+  },
+})
+export default class NewOpinion extends Vue {
+  opinionForm: object = {
+    textarea: '',
+  };
+}
+
+</script>
+
 <style lang="scss">
 
   h1 {
@@ -139,26 +158,3 @@
   }
 
 </style>
-
-<script>
-import {Component, Vue} from 'vue-property-decorator';
-import Input from '../../components/input/Input';
-import Stars from '../../components/stars/Stars';
-
-@Component({
-  components: {
-    Input,
-    Stars,
-  },
-})
-
-export default class NewOpinion extends Vue {
-  data() {
-    return {
-      textarea: ''
-    }
-  }
-
-}
-
-</script>
