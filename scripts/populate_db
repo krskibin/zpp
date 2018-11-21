@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+"""
+Datebase populating script
+Use only with running docker container
+"""
+import requests
+from datetime import date, timedelta
+
+API_URL = 'http://localhost:8080/api/v1/'
+EMAIL = 'admin@mail.com'
+PASSWORD = 'password'
+
+restaurant = {
+    'name': 'Halinka',
+    'longitude': 12,
+    'latitude': 12,
+    'food_type': 'Kuchnia polska',
+    'avg_rating': 4,
+    'price_rating': 4,
+    'vegan_option': True,
+    'short_review': 'short review, short_review',
+    'address': 1
+}
+
+review = {
+    'rating': 4,
+    'review': 'Costam costam',
+}
+
+opinion = {
+    'restaurant': 1,
+    'food_review': 1,
+    'climate_review': 1,
+    'staff_review': 1,
+    'price_review': 1,
+    'recept_numer': 300
+}
+
+for i in range(1000):
+    res1 = requests.post(f'{API_URL}/restaurants/',
+                         json=restaurant,
+                         auth=(EMAIL, PASSWORD))
+    print(res1.text)
+    res2 = requests.post(f'{API_URL}/reviews/',
+                         json=review,
+                         auth=(EMAIL, PASSWORD))
+    print(res2.text)
+    res2 = requests.post(f'{API_URL}/opinions/',
+                         json=opinionres2 = requests.post(f'{API_URL}/reviews/',
+                         json=review,
+                         auth=(EMAIL, PASSWORD))
+    print(res2.text),
+                         auth=(EMAIL, PASSWORD))
+    print(res2.text)
