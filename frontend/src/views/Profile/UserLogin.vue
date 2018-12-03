@@ -3,6 +3,17 @@
     <h1>Login</h1>
     <el-row>
       <el-col :offset="8" :span="8">
+        <el-alert
+          title="Wprowadzony adres e-mail lub hasło są nieprawidłowe. Spróbuj ponownie."
+          type="error"
+          @close="close"
+          v-show="showAlert"
+          show-icon>
+        </el-alert>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :offset="8" :span="8">
         <el-form ref="form" :model="loginForm" class="demo-dynamic">
           <el-form-item
             prop="email"
@@ -10,15 +21,12 @@
             >
             <el-input v-model="loginForm.email"></el-input>
           </el-form-item>
-
           <el-form-item
             prop="password"
             label="Hasło"
             >
             <el-input type="password" v-model="loginForm.password"></el-input>
           </el-form-item>
-
-
           <el-form-item>
             <el-button @click="handleSubmit('login')">Zaloguj się</el-button>
             <el-button @click="handleSelect('register')">Zarejestruj</el-button>
@@ -45,6 +53,8 @@ export default class UserLogin extends Vue {
 
   name: string = 'user-login';
 
+  showAlert = false;
+
   loginForm: LoginForm = {
     email: '',
     password: '',
@@ -58,8 +68,14 @@ export default class UserLogin extends Vue {
     this.login(this.loginForm).then((response: any) => {
       if (response.success) {
         this.$router.push({name: 'home'});
+      } else {
+        this.showAlert = true;
       }
     });
+  }
+
+  close() {
+    this.showAlert = false;
   }
 }
 </script>
