@@ -49,7 +49,8 @@ interface RegisterForm {
 
 @Component
 export default class UserRegister extends Vue {
-  @Action('login') login: any;
+  @Getter('sendEmailRegister') sendEmailRegister: any;
+
   name = 'user-register';
 
   registerForm: RegisterForm = {
@@ -61,18 +62,18 @@ export default class UserRegister extends Vue {
   alertPassword: boolean = false;
 
   handleSubmit() {
-   //
+   return this.$store.state.auth;
   }
 
   validatePasswordEmail() {
     const re = /\S+@\S+\.\S+/;
     re.test(this.registerForm.email) ? this.alertEmail = false : this.alertEmail = true;
     this.registerForm.password.length > 5 ? this.alertPassword = false : this.alertPassword = true;
-     this.alertPassword === false && this.alertEmail === false ? this.handleSubmit() : null
+    if (this.alertPassword === false && this.alertEmail === false) { this.handleSubmit(); }
   }
 
-  close(type: string){
-    type === 'password' ? this.alertPassword = false :  this.alertEmail = false
+  close(type: string) {
+    type === 'password' ? this.alertPassword = false :  this.alertEmail = false;
   }
 }
 </script>

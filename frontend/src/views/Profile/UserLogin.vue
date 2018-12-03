@@ -68,15 +68,14 @@ export default class UserLogin extends Vue {
     this.login(this.loginForm).then((response: any) => {
       if (response.success) {
         this.$router.push({name: 'home'});
-      }
-      else {
-        this.showAlert = true
+      } else {
+        this.showAlert = true;
       }
     });
   }
 
   close() {
-    this.showAlert = false
+    this.showAlert = false;
   }
 }
 </script>
