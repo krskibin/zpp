@@ -3,26 +3,35 @@
     <h1>Register</h1>
     <el-row>
       <el-col :offset="8" :span="8">
-        <el-form class="demo-dynamic">
-
+        <el-form :model="registerForm" class="demo-dynamic">
+          <el-alert
+            title="Wprowadzony adres e-mail jest nieprawidłowy."
+            type="error"
+            @close="close('email')"
+            v-show="alertEmail"
+            show-icon>
+          </el-alert>
           <el-form-item
             prop="email"
-            label="Email"
-            >
-            <el-input></el-input>
+            label="Email">
+            <el-input v-model="registerForm.email"></el-input>
           </el-form-item>
-
+          <el-alert
+            title="Wprowadzone hasło jest za krótkie - minimala ilość znaków: 6"
+            type="error"
+            @close="close('password')"
+            v-show="alertPassword"
+            show-icon>
+          </el-alert>
           <el-form-item
             prop="password"
             label="Hasło"
             >
-            <el-input type="password"></el-input>
+            <el-input type="password" v-model="registerForm.password"></el-input>
           </el-form-item>
-
           <el-form-item>
-            <el-button>Prześlij</el-button>
+            <el-button @click="validatePasswordEmail">Prześlij</el-button>
           </el-form-item>
-
         </el-form>
       </el-col>
     </el-row>
@@ -30,13 +39,45 @@
 </template>
 
 <script lang="ts">
-import {Vue} from 'vue-property-decorator';
+import {Component, Vue} from 'vue-property-decorator';
+import {Getter, Action} from 'vuex-class';
 
+interface RegisterForm {
+  email: string;
+  password: string;
+}
+
+@Component
 export default class UserRegister extends Vue {
+  @Action('register') register: any;
+
   name = 'user-register';
 
+  registerForm: RegisterForm = {
+    email: '',
+    password: '',
+  };
+
+  alertEmail: boolean = false;
+  alertPassword: boolean = false;
+
   handleSubmit() {
-    // write submit here
+    this.register({email: this.registerForm.email, password: this.registerForm.password}).then((response: any) => {
+      if (response.success) {
+        this.$router.push('/login');
+      }
+    });
+  }
+
+  validatePasswordEmail() {
+    const re = /\S+@\S+\.\S+/;
+    re.test(this.registerForm.email) ? this.alertEmail = false : this.alertEmail = true;
+    this.registerForm.password.length > 5 ? this.alertPassword = false : this.alertPassword = true;
+    if (this.alertPassword === false && this.alertEmail === false) { this.handleSubmit(); }
+  }
+
+  close(type: string) {
+    type === 'password' ? this.alertPassword = false :  this.alertEmail = false;
   }
 }
 </script>

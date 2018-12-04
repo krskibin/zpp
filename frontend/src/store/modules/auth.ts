@@ -1,6 +1,5 @@
 import HTTP from '@/utils/http';
-import { AUTH_SAVE_USER, AUTH_DELETE_USER, AUTH_SAVE_INFO } from '@/store/mutationTypes';
-
+import { AUTH_SAVE_USER, AUTH_DELETE_USER, AUTH_SAVE_INFO, SEND_EMAIL } from '@/store/mutationTypes';
 
 interface State {
   userId: number | null;
@@ -24,8 +23,6 @@ const getters = {
   getLastName: (storeState: State) => storeState.lastName,
   getUserId: (storeState: State) => storeState.userId,
   getUserInfo: (storeState: State) => ({
-    firstName: storeState.firstName || '',
-    lastName: storeState.lastName || '',
     email: storeState.email || '',
   }),
 };
@@ -94,6 +91,27 @@ const actions = {
   logout(ctx: any) {
     ctx.commit(AUTH_DELETE_USER);
   },
+  async register(ctx: any, credentials: any) {
+    try {
+      const response = await HTTP.post('users/register/', credentials);
+      return {
+        success: true,
+        message: 'Successfully register',
+      };
+    } catch (error) {
+      if (error.response.data) {
+        return {
+          success: false,
+          message: 'Unable to register with provided credentials',
+        };
+      } else {
+        return {
+          success: false,
+          message: 'Unable to connect to server',
+        };
+      }
+    }
+   },
 };
 
 const mutations = {
@@ -116,7 +134,12 @@ const mutations = {
     storeState.firstName = payload.firstName;
     storeState.lastName = payload.lastName;
     storeState.userId = payload.userId;
+    storeState.email = payload.email;
   },
+  [SEND_EMAIL](storeState: State, payload: State) {
+    state.email = payload.email;
+  },
+
 };
 
 export default {
