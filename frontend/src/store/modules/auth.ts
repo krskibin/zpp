@@ -23,8 +23,6 @@ const getters = {
   getLastName: (storeState: State) => storeState.lastName,
   getUserId: (storeState: State) => storeState.userId,
   getUserInfo: (storeState: State) => ({
-    firstName: storeState.firstName || '',
-    lastName: storeState.lastName || '',
     email: storeState.email || '',
   }),
 };
@@ -93,12 +91,9 @@ const actions = {
   logout(ctx: any) {
     ctx.commit(AUTH_DELETE_USER);
   },
-  async sendEmailRegister(ctx: any, credentials: any) {
+  async register(ctx: any, credentials: any) {
     try {
-      const response = await HTTP.post('users/user-auth/create/', credentials);
-      ctx.commit(AUTH_SAVE_USER, {
-        email: credentials.email,
-      });
+      const response = await HTTP.post('users/register/', credentials);
       return {
         success: true,
         message: 'Successfully register',
@@ -139,6 +134,7 @@ const mutations = {
     storeState.firstName = payload.firstName;
     storeState.lastName = payload.lastName;
     storeState.userId = payload.userId;
+    storeState.email = payload.email;
   },
   [SEND_EMAIL](storeState: State, payload: State) {
     state.email = payload.email;

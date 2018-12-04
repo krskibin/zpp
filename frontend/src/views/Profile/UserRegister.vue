@@ -49,7 +49,7 @@ interface RegisterForm {
 
 @Component
 export default class UserRegister extends Vue {
-  @Getter('sendEmailRegister') sendEmailRegister: any;
+  @Action('register') register: any;
 
   name = 'user-register';
 
@@ -62,7 +62,11 @@ export default class UserRegister extends Vue {
   alertPassword: boolean = false;
 
   handleSubmit() {
-   return this.$store.state.auth;
+    this.register({email: this.registerForm.email, password: this.registerForm.password}).then((response: any) => {
+      if (response.success) {
+        this.$router.push('/login');
+      }
+    });
   }
 
   validatePasswordEmail() {

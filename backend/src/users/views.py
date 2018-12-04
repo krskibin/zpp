@@ -1,7 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import AnonymousUser
 
 from rest_framework.permissions import IsAuthenticated
@@ -25,10 +25,11 @@ class UserInfoView(APIView):
         })
 
 
+@custom_permissions([AllowAny])
 class RegistrationViewSet(APIView):
     serializer_class = RegistrationSerializer
     def post(self, request):
-        user = request.data.get('user', {})
+        user = request.data
 
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)

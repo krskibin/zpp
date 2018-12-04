@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(max_length=1,
+    password = serializers.CharField(max_length=50,
                                      min_length=6,
                                      write_only=True)
     class Meta:

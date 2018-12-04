@@ -2,7 +2,7 @@
   <div>
     <el-row> <h1 class="title">Mój profil</h1> </el-row>
     <el-row> <h2 class="label">Adres email</h2> </el-row>
-    <el-row> <h3 class="email">ggg@ggg.mail.pl</h3> </el-row>
+    <el-row> <h3 class="email">{{ userInfo.email }}</h3> </el-row>
     <el-row> <h2 class="label">Zmień hasło</h2> </el-row>
     <el-row>
         <el-input class="input" placeholder="Nowe hasło" v-model="input"></el-input>
