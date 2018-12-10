@@ -1,5 +1,7 @@
 from django.db import models
 import datetime
+from django.utils.safestring import mark_safe
+import datetime
 
 RATING_SCALE = (
     (1, 'Awful'),
@@ -16,7 +18,6 @@ FEATURES_CHOICES = (
     ('Climatization', 'Climatization'),
     ('Outdoor tabkle', 'Outdoor tabkle')
 )
-
 
 
 class Restaurant(models.Model):
@@ -70,3 +71,18 @@ class Features(models.Model):
     features = models.CharField(max_length=40, choices=FEATURES_CHOICES)
     option = models.ForeignKey(Opinion, on_delete=models.CASCADE)
 
+class Image(models.Model):
+    name = models.CharField(max_length=100, default=str(datetime.datetime.now()), blank=True, null=True, editable=False)
+    imagefile = models.FileField(upload_to='images/', null=True, verbose_name="")
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, blank=True, null=True)
+    option = models.ForeignKey(Opinion, on_delete=models.CASCADE, blank=True, null=True)
+
+
+    def __str__(self):
+        return self.name + ": " + str(self.imagefile)
+
+    def image_tag(self):
+        if(self.imagefile == None): return mark_safe('<img src="/media/placeholders/placeholder.png" width="300" />')#HARDCODED PLACEHOLDER!!!
+        return mark_safe('<img src="/media/%s" width="300" />' % (self.imagefile));
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
