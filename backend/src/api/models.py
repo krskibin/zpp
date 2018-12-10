@@ -37,8 +37,8 @@ class Restaurant(models.Model):
         avgRating = 0
         for opinion in opinions:
             avgRating += ((opinion.food_review.rating+opinion.climate_review.rating+opinion.staff_review.rating+opinion.price_review.rating)/4)
-        return avgRating/opinions.size
-    
+        return avgRating/opinions.size if opinion.size > 0 else 0
+
 
 class Address(models.Model):
     restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE, related_name='address')
