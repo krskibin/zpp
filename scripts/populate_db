@@ -28,12 +28,13 @@ review = {
 }
 
 opinion = {
-    'restaurant': 1,
-    'food_review': 1,
-    'climate_review': 1,
-    'staff_review': 1,
-    'price_review': 1,
-    'recept_numer': 300
+    "date": "2018-12-10",
+    "receipt_number": "#",
+    "restaurant": 1,
+    "food_review": 2,
+    "climate_review": 1,
+    "staff_review": 3,
+    "price_review": 1
 }
 
 for i in range(1000):
@@ -42,7 +43,7 @@ for i in range(1000):
                          auth=(EMAIL, PASSWORD))
     print(res1.text)
     res2 = requests.post(f'{API_URL}/reviews/',
-                         json=review,
+                         json=opinion,
                          auth=(EMAIL, PASSWORD))
     print(res2.text)
     res3 = requests.post(f'{API_URL}/opinions/',
