@@ -1,4 +1,5 @@
 # ZPP
+![](https://travis-ci.org/krskibin/zpp.svg?branch=master)
 
 > Description here
 
