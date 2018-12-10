@@ -43,10 +43,10 @@ for i in range(1000):
                          auth=(EMAIL, PASSWORD))
     print(res1.text)
     res2 = requests.post(f'{API_URL}/reviews/',
-                         json=opinion,
+                         json=review,
                          auth=(EMAIL, PASSWORD))
     print(res2.text)
     res3 = requests.post(f'{API_URL}/opinions/',
-                         json=review,
+                         json=opinion,
                          auth=(EMAIL, PASSWORD))
     print(res3.text)
