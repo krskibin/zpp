@@ -50,6 +50,7 @@ zpp
 2. [Docker Compose](https://docs.docker.com/compose/install)
 
 ---
+
 ## Installation
 
 1. Install all dependancies and go to project root directory using bash console
@@ -61,6 +62,13 @@ zpp
 8. In your browser go to:
    1. localhost:8000 —> Backend API
    2. localhost:8080 —> Frontend app
+
+## In case of trouble with first migrations
+- ./manage.py makemigrations users
+- ./manage.py sqlmigrate users 0001_initial
+
+## In case of real toruble with migrations
+- Delete migrations folders and go back to "In case of trouble with first migrations"
 
 ## Commands
 

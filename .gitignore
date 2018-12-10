@@ -50,3 +50,7 @@ tmtagsHistory
 # Celery files #
 ################
 .ropeproject
+
+# Upload Images #
+#################
+backend/src/media/images
