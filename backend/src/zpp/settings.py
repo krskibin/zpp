@@ -5,6 +5,7 @@ import os
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = os.environ.get('DEBUG', 'true').lower() == 'true'
 ALLOWED_HOSTS = ['*']
@@ -127,4 +128,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-STATIC_URL = '/static/'
+
+STATIC_URL = '/backend-static/'
+STATIC_ROOT = os.environ.get('DJANGO_STATIC_ROOT', '/usr/src/app/static')

@@ -1,0 +1,30 @@
+FROM python:3.6
+ENV PYTHONUNBUFFERED 1
+
+# script from https://github.com/vishnubob/wait-for-it/
+ENV PATH /tmp/scripts:$PATH
+COPY wait-for-it.sh /tmp/scripts/wait-for-it.sh
+
+WORKDIR /usr/src/app/backend
+RUN apt-get update && apt-get install -y libsasl2-dev python-dev libldap2-dev libssl-dev
+
+# Python packages installation
+ADD requirements.txt .
+RUN pip install -r requirements.txt
+
+WORKDIR /usr/src/app/backend/src
+
+# Database
+ARG DB_ADDRESS=db
+ARG DB_NAME=postgres
+ARG DB_USER=postgres
+ARG DB_PORT=5432
+ARG DB_PASS=postgres
+ENV DB_ADDRESS=$DB_ADDRESS DB_NAME=$DB_NAME DB_USER=$DB_USER DB_PORT=$DB_PORT DB_PASS=$DB_PASS
+
+# Django
+ARG SECRET_KEY
+ENV SECRET_KEY $SECRET_KEY
+ENV DEBUG=FALSE
+
+COPY src .
