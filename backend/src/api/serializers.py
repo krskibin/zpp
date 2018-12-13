@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Restaurant, Review, Opinion, Address
+from .models import Restaurant, Review, Opinion, Address, Image
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
@@ -21,4 +21,9 @@ class OpinionSerializer(serializers.ModelSerializer):
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
+        fields = '__all__'
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
         fields = '__all__'

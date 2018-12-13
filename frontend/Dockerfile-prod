@@ -1,0 +1,32 @@
+FROM node:9.2.1 as builder
+
+WORKDIR /usr/src/app/
+COPY package.json /tmp/
+
+RUN cd /tmp && yarn install --verbose
+RUN cp -a /tmp/node_modules .
+
+COPY src src
+COPY build build
+COPY public public
+COPY static static
+COPY babel.config.js tsconfig.json tslint.json vue.config.js ./
+
+RUN ln -s /tmp/package.json package.json
+
+RUN yarn build
+
+
+# DJANGO STATIC COLLECTOR
+#----------------------------------------------
+FROM zpp_backend as django-static
+ENV SECRET_KEY='faskdjfrhj2eh3'
+RUN ./manage.py collectstatic --noinput
+#----------------------------------------------
+
+# NGING SETUP
+FROM nginx:1.12.2-alpine
+
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /usr/src/app/dist /usr/src/app/dist
+COPY --from=django-static /usr/src/app/static /static
