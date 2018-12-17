@@ -18,6 +18,7 @@
           <el-form-item
             prop="email"
             label="Email"
+            v-bind:class="{ 'is-invalid': showAlert}"
             >
             <el-input v-model="loginForm.email"></el-input>
           </el-form-item>
@@ -25,7 +26,7 @@
             prop="password"
             label="Hasło"
             >
-            <el-input type="password" v-model="loginForm.password"></el-input>
+            <el-input type="password" v-model="loginForm.password" v-bind:class="{ 'is-invalid': showAlert}"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button @click="handleSubmit('login')">Zaloguj się</el-button>
@@ -91,4 +92,9 @@ button {
     color: black !important;
   }
 }
+    .is-invalid {
+    input {
+      border-color: rosybrown;
+    }
+  }
 </style>
