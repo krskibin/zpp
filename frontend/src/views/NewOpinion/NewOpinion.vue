@@ -105,7 +105,7 @@
           </el-row>
         </el-col>
       </el-row>
-      <el-row :gutter="500" style="margin-top: 40px; margin-bottom: 50px;">
+      <el-row style="margin-top: 40px; margin-bottom: 50px;">
         <el-button @click="submitForm">Dodaj opinię</el-button>
 
       </el-row>
