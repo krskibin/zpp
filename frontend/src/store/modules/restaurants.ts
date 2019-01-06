@@ -1,4 +1,4 @@
-import { RESTAURANTS_LIST } from '@/store/mutationTypes';
+import {RESTAURANTS_LIST, RESTAURANT_ADD} from '@/store/mutationTypes';
 
 import HTTP from '@/utils/http';
 
@@ -31,6 +31,25 @@ const actions = {
         message: error,
       };
     }
+  },
+  async addRestaurant(ctx: any, restaurant: any) {
+    try {
+      const response = await HTTP.post('v1/restaurants/', restaurant);
+      ctx.commit(RESTAURANT_ADD, {
+        name: restaurant.name,
+        location: restaurant.location,
+      });
+      ctx.dispatch('getUserInfo');
+      return {
+        success: true,
+        message: 'Successfully added restaurant',
+      };
+    } catch (error) {
+        return {
+          success: false,
+          message: 'Unable to connect to server',
+        };
+      }
   },
 };
 
