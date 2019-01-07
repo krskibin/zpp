@@ -37,7 +37,13 @@ const actions = {
       const response = await HTTP.post('v1/restaurants/', restaurant);
       ctx.commit(RESTAURANT_ADD, {
         name: restaurant.name,
-        location: restaurant.location,
+        longitude: restaurant.longitude,
+        latitude: restaurant.latitude,
+        food_type: restaurant.food_type,
+        price_rating: restaurant.price_rating,
+        vegan_option: restaurant.vegan_option,
+        vegetarian_option: restaurant.vegetarian_option,
+        short_review: restaurant.short_review,
       });
       ctx.dispatch('getUserInfo');
       return {
@@ -45,11 +51,11 @@ const actions = {
         message: 'Successfully added restaurant',
       };
     } catch (error) {
-        return {
-          success: false,
-          message: 'Unable to connect to server',
-        };
-      }
+      return {
+        success: false,
+        message: 'Unable to connect to server',
+      };
+    }
   },
 };
 
