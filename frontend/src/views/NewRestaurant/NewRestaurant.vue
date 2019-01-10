@@ -9,35 +9,40 @@
             <el-input v-model="restaurantAddForm.name"></el-input>
           </el-form-item>
           <el-form-item
-              prop="location"
+              prop="longitude"
               label="Adres">
-            <el-input v-model="restaurantAddForm.location"></el-input>
+            <el-input v-model="restaurantAddForm.longitude"></el-input>
           </el-form-item>
-            <el-form-item
+             <el-form-item
+              prop="latitude"
+              label="Adres">
+            <el-input v-model="restaurantAddForm.latitude"></el-input>
+          </el-form-item>
+          <el-form-item
               prop="food_type"
               label="Rodzaj kuchni">
             <el-input v-model="restaurantAddForm.food_type"></el-input>
           </el-form-item>
 
-            <el-form-item
+          <el-form-item
               prop="price_rating"
               label="Ocena">
             <el-input v-model="restaurantAddForm.price_rating"></el-input>
           </el-form-item>
 
-            <el-form-item
+          <el-form-item
               prop="vegan"
               label="Vegan">
             <el-checkbox v-model="restaurantAddForm.vegan"></el-checkbox>
           </el-form-item>
 
-            <el-form-item
+          <el-form-item
               prop="vegetarian"
               label="Vegetarian">
             <el-checkbox v-model="restaurantAddForm.vegetarian"></el-checkbox>
           </el-form-item>
 
-            <el-form-item
+          <el-form-item
               prop="short_review"
               label="Krótki opis">
             <el-input v-model="restaurantAddForm.short_review"></el-input>
@@ -57,7 +62,8 @@
 
   interface IAddRestaurantForm {
     name: string;
-    location: string;
+    longitude: number;
+    latitude: number;
     food_type: string;
     short_review: string;
     vegetarian: boolean;
@@ -79,22 +85,32 @@
 
     restaurantAddForm: IAddRestaurantForm = {
       name: '',
-      location: '',
+      longitude: 0,
+      latitude: 0,
       food_type: '',
       short_review: '',
       vegetarian: false,
       vegan: false,
-      price_rating: null
-
+      price_rating: 0
     };
 
     handleSubmit() {
       this.addRestaurant({
         name: this.restaurantAddForm.name,
-        location: this.restaurantAddForm.location
+        longitude: this.restaurantAddForm.longitude,
+        latitude: this.restaurantAddForm.latitude,
+        food_type: this.restaurantAddForm.food_type,
+        short_review: this.restaurantAddForm.short_review,
+        vegetarian: this.restaurantAddForm.vegetarian,
+        vegan: this.restaurantAddForm.vegan,
+        price_rating: this.restaurantAddForm.price_rating
       }).then((response: any) => {
         if (response.success) {
+          console.log(this.restaurantAddForm.name);
           this.$router.push('/');
+        }
+        else {
+          console.log(response)
         }
       });
     }
