@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Opinion, Review, Restaurant, Address, Features, Image)
+from .models import (Opinion, Restaurant, Address, Features, Image)
 
 class FeaturesInline(admin.TabularInline):
     model = Features
@@ -17,9 +17,6 @@ class AddressAdmin(admin.TabularInline):
 class OpinionAdmin(admin.ModelAdmin):
     inlines = [FeaturesInline, ImageInline]
 
-class ReviewAdmin(admin.ModelAdmin):
-    pass
-
 class ImageAdmin(admin.ModelAdmin):
      readonly_fields = ['image_tag']
 
@@ -28,7 +25,6 @@ class RestaurantAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Opinion, OpinionAdmin)
-admin.site.register(Review, ReviewAdmin)
 admin.site.register(Restaurant, RestaurantAdmin)
 admin.site.register(Image, ImageAdmin)
 #admin.site.register(Address, AddressAdmin)

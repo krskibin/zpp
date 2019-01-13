@@ -8,7 +8,6 @@ app_name = 'api'
 
 router = SimpleRouter()
 router.register('restaurants', views.RestaurantViewSet, 'restaurants')
-router.register('reviews', views.ReviewViewSet, 'reviews')
 router.register('opinions', views.OpinionViewSet, 'opinions')
 
 urlpatterns = [
