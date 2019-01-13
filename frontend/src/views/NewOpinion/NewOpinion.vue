@@ -6,9 +6,9 @@
       </el-row>
       <el-row>
         <el-col :offset="3" :span="7">
-          <el-form-item prop="name">
+          <el-form-item prop="restaurant">
             <h2 class="h2o">Wybierz restaurację</h2>
-            <el-select v-model="ruleForm.valueSelect" filterable placeholder="Wybierz restaurację">
+            <el-select v-model="ruleForm.restaurant" filterable placeholder="Wybierz restaurację">
               <el-option
                   v-for="item in restaurantName"
                   :key="item.id"
@@ -17,26 +17,8 @@
               </el-option>
             </el-select>
           </el-form-item>
-
-          <el-form-item>
-            <h2 class="h2o">Ocena ogólna</h2>
-            <el-rate class="general-rate"
-                     v-model="value5"
-                     show-score
-                     text-color="#f9d3a7"
-                     score-template="{value} points"
-            >
-            </el-rate>
-          </el-form-item>
-
-          <el-form-item prop="title">
-            <h2 class="h2o" style="margin-top: 30px;">Twoja recenzja</h2>
-            <el-input class="input" placeholder="Wpisz tytuł recenzji" v-model="ruleForm.title"
-                      v-bind:class="{ 'is-invalid': missingTitle}"></el-input>
-            <div class="invalid-feedback" v-show="missingTitle">Wpisz tytuł recenzji.</div>
-          </el-form-item>
-
           <el-form-item prop="description">
+            <h2 class="h2o" style="margin-top: 30px;">Twoja recenzja</h2>
             <el-input class="input" type="textarea" :rows="6" placeholder="Napisz swoją recenzję"
                       v-model="ruleForm.description" v-bind:class="{ 'is-invalid': missingDescription}"></el-input>
             <div class="invalid-feedback" v-show="missingDescription">Musisz uzupełnić to pole.</div>
@@ -46,39 +28,42 @@
 
       <el-row>
         <el-col :span="12">
-          <el-form-item prop="title">
+          <el-form-item prop="foodReview">
             <h3>Jedzenie</h3>
             <el-rate
-                v-model="value5"
+                v-model="ruleForm.foodReview"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
           </el-form-item>
-          <el-form-item prop="title">
+
+          <el-form-item prop="climateReview">
             <h3>Klimat</h3>
             <el-rate
-                v-model="value5"
+                v-model="ruleForm.climateReview"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
           </el-form-item>
         </el-col>
+
         <el-col :span="12">
-          <el-form-item prop="title">
+          <el-form-item prop="staffReview">
             <h3>Obsługa</h3>
             <el-rate
-                v-model="value5"
+                v-model="ruleForm.staffReview"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
           </el-form-item>
-          <el-form-item prop="title">
+
+          <el-form-item prop="priceReview">
             <h3>Cena</h3>
             <el-rate
-                v-model="value5"
+                v-model="ruleForm.priceReview"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
@@ -98,7 +83,11 @@
     name: string;
     title: string;
     description: string;
-    valueSelect: '';
+    restaurant: '';
+    foodReview: number;
+    climateReview: number;
+    staffReview: number;
+    priceReview: number;
   }
 
   import {Component, Vue} from 'vue-property-decorator';
@@ -128,7 +117,11 @@
       name: '',
       title: '',
       description: '',
-      valueSelect: '',
+      restaurant: '',
+      foodReview: 0,
+      climateReview: 0,
+      staffReview: 0,
+      priceReview: 0,
     };
 
     missingName: boolean = false;
@@ -136,6 +129,7 @@
     missingDescription: boolean = false;
 
     submitForm() {
+      console.log(this.ruleForm.restaurant)
       this.ruleForm.name === '' ? this.missingName = true : this.missingName = false;
       this.ruleForm.title === '' ? this.missingTitle = true : this.missingTitle = false;
       this.ruleForm.description === '' ? this.missingDescription = true : this.missingDescription = false;
