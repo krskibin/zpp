@@ -2,34 +2,30 @@ import HTTP from '@/utils/http';
 import {AUTH_SAVE_USER, AUTH_DELETE_USER, AUTH_SAVE_INFO, SEND_EMAIL} from '@/store/mutationTypes';
 
 interface State {
-  restaurantId: number | null;
-  name: string;
-  longitude: number;
-  latitude: number;
-  foodType: string;
-  priceRating: number;
-  veganOption: boolean;
-  vegetarianOption: boolean;
-  shortReview: string;
+  date: string;
+  receiptNumber: string;
+  restaurant: number;
+  foodReview: number;
+  climateReview: number;
+  staffReview: number;
+  priceReview: number;
 }
 
 const state: State = {
-  restaurantId: null,
-  name: '',
-  longitude: 0,
-  latitude: 0,
-  foodType: '',
-  priceRating: 0,
-  veganOption: false,
-  vegetarianOption: false,
-  shortReview: '',
+  date: '',
+  receiptNumber: '',
+  restaurant: 0,
+  foodReview: 0,
+  climateReview: 0,
+  staffReview: 0,
+  priceReview: 0,
 };
 
 
 const actions = {
-  async addRestaurant(ctx: any, restaurantElement: any) {
+  async addOpinion(ctx: any, opinionElement: any) {
     try {
-      const response = await HTTP.post('v1/restaurants/', restaurantElement);
+      const response = await HTTP.post('v1/restaurants/', opinionElement);
       return {
         success: true,
         message: 'Successfully',

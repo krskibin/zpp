@@ -16,6 +16,10 @@
                 <i class="el-icon-plus"></i>
                 <span slot="title">Dodaj opinię</span>
               </el-menu-item>
+                <el-menu-item index="new-restaurant">
+                <i class="el-icon-plus"></i>
+                <span slot="title">Dodaj restaurację</span>
+              </el-menu-item>
             </div>
             <div>
               <el-menu-item index="profile" id="last">
@@ -96,7 +100,6 @@ body {
 
 .app-menu-vertical  {
   width: 65px;
-  height: 100%;
   height: 100%;
 
   .menu-elements-wrapper {

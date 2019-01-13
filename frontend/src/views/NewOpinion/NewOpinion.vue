@@ -4,110 +4,90 @@
       <el-row>
         <h1>Dodaj nową opinię</h1>
       </el-row>
-      <el-row :gutter="20">
-        <h2 class="h2o">Wybierz restaurację</h2>
-      </el-row>
-      <el-row :gutter="500">
-        <el-form-item prop="name">
-          <el-autocomplete
-              class="inline-input"
-              v-model="ruleForm.name"
-              placeholder="Wpisz nazwę restauracji"
-              :trigger-on-focus="false"
-              v-bind:class="{ 'is-invalid': missingName}"
-          ></el-autocomplete>
-          <div class="invalid-feedback marginLeft" v-show="missingName">Wybierz restaurację.</div>
-        </el-form-item>
-      </el-row>
-      <el-row :gutter="20">
-        <h2 class="h2o" style="margin-top: 30px;">Ocena ogólna</h2>
-      </el-row>
-      <el-row :gutter="500">
-        <el-rate class="general-rate"
-                 v-model="value5"
-                 show-score
-                 text-color="#f9d3a7"
-                 score-template="{value} points"
-        >
-        </el-rate>
+      <el-row>
+        <el-col :offset="3" :span="7">
+          <el-form-item prop="name">
+            <h2 class="h2o">Wybierz restaurację</h2>
+            <el-select v-model="ruleForm.valueSelect" filterable placeholder="Wybierz restaurację">
+              <el-option
+                  v-for="item in restaurantName"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+
+          <el-form-item>
+            <h2 class="h2o">Ocena ogólna</h2>
+            <el-rate class="general-rate"
+                     v-model="value5"
+                     show-score
+                     text-color="#f9d3a7"
+                     score-template="{value} points"
+            >
+            </el-rate>
+          </el-form-item>
+
+          <el-form-item prop="title">
+            <h2 class="h2o" style="margin-top: 30px;">Twoja recenzja</h2>
+            <el-input class="input" placeholder="Wpisz tytuł recenzji" v-model="ruleForm.title"
+                      v-bind:class="{ 'is-invalid': missingTitle}"></el-input>
+            <div class="invalid-feedback" v-show="missingTitle">Wpisz tytuł recenzji.</div>
+          </el-form-item>
+
+          <el-form-item prop="description">
+            <el-input class="input" type="textarea" :rows="6" placeholder="Napisz swoją recenzję"
+                      v-model="ruleForm.description" v-bind:class="{ 'is-invalid': missingDescription}"></el-input>
+            <div class="invalid-feedback" v-show="missingDescription">Musisz uzupełnić to pole.</div>
+          </el-form-item>
+        </el-col>
       </el-row>
 
-      <el-row :gutter="20">
-        <h2 class="h2o" style="margin-top: 30px;">Twoja recenzja</h2>
-      </el-row>
-      <el-row style="margin-top: 4px;">
-        <el-form-item prop="title">
-          <el-input class="input" placeholder="Wpisz tytuł recenzji" v-model="ruleForm.title"
-                    v-bind:class="{ 'is-invalid': missingTitle}"></el-input>
-          <div class="invalid-feedback" v-show="missingTitle">Wpisz tytuł recenzji.</div>
-        </el-form-item>
-      </el-row>
-      <el-form-item prop="description">
-        <el-row style="margin-top: 20px;">
-          <el-input class="input" type="textarea" :rows="6" placeholder="Napisz swoją recenzję"
-                    v-model="ruleForm.description" v-bind:class="{ 'is-invalid': missingDescription}"></el-input>
-          <div class="invalid-feedback" v-show="missingDescription">Musisz uzupełnić to pole.</div>
-        </el-row>
-      </el-form-item>
-      <el-row style="margin-top: 30px;">
+      <el-row>
         <el-col :span="12">
-          <el-row :gutter="20">
+          <el-form-item prop="title">
             <h3>Jedzenie</h3>
-          </el-row>
-          <el-row :gutter="500">
             <el-rate
                 v-model="value5"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
-          </el-row>
-        </el-col>
-        <el-col :span="12">
-          <el-row :gutter="20">
+          </el-form-item>
+          <el-form-item prop="title">
             <h3>Klimat</h3>
-          </el-row>
-          <el-row :gutter="500">
             <el-rate
                 v-model="value5"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
-          </el-row>
+          </el-form-item>
         </el-col>
-      </el-row>
-      <el-row style="margin-top: 30px;">
         <el-col :span="12">
-          <el-row :gutter="20">
+          <el-form-item prop="title">
             <h3>Obsługa</h3>
-          </el-row>
-          <el-row :gutter="500">
             <el-rate
                 v-model="value5"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
-          </el-row>
-        </el-col>
-        <el-col :span="12">
-          <el-row :gutter="20">
+          </el-form-item>
+          <el-form-item prop="title">
             <h3>Cena</h3>
-          </el-row>
-          <el-row :gutter="500">
             <el-rate
                 v-model="value5"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
-          </el-row>
+          </el-form-item>
         </el-col>
       </el-row>
-      <el-row style="margin-top: 40px; margin-bottom: 50px;">
+      <el-row>
         <el-button @click="submitForm">Dodaj opinię</el-button>
-
       </el-row>
     </el-form>
   </div>
@@ -118,11 +98,13 @@
     name: string;
     title: string;
     description: string;
+    valueSelect: '';
   }
 
   import {Component, Vue} from 'vue-property-decorator';
   import Input from '../../components/input/Input.vue';
   import Stars from '../../components/stars/Stars.vue';
+  import {Getter, Action} from 'vuex-class';
 
   @Component({
     components: {
@@ -131,11 +113,24 @@
     },
   })
   export default class NewOpinion extends Vue {
+    @Action('getRestaurantIdName') getRestaurantIdName: any;
+    @Getter('getRestaurantElement') restaurant: any;
+
+    get restaurantName(): any {
+      return this.$store.state.restaurants.restaurantIDName;
+    }
+
+    private created() {
+      this.getRestaurantIdName();
+    }
+
     ruleForm: ruleForm = {
       name: '',
       title: '',
       description: '',
+      valueSelect: '',
     };
+
     missingName: boolean = false;
     missingTitle: boolean = false;
     missingDescription: boolean = false;
@@ -163,7 +158,7 @@
     color: #191a1c;
     float: left;
     margin: 16px;
-    margin-left: 100px;
+    margin-left: 0px;
   }
 
   el-button {
@@ -173,7 +168,6 @@
   .inline-input {
     width: 600px;
     float: left;
-    margin-left: 340px;
   }
 
   .general-rate {
@@ -184,13 +178,6 @@
   .input {
     width: 600px;
     float: left;
-    margin-left: 90px;
-  }
-
-  .newRestaurant {
-    position: fixed;
-    width: 100%;
-    height: 100%;
   }
 
   .is-invalid {
@@ -213,5 +200,9 @@
 
   .marginLeft {
     margin-left: 353px;
+  }
+
+  .el-select {
+    width: 100%;
   }
 </style>

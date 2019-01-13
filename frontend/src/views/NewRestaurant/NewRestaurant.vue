@@ -1,63 +1,62 @@
 <template>
   <div class="newRestaurant">
-    <el-row>
-      <el-col :offset="8" :span="8">
-        <el-form :model="restaurantAddForm" class="demo-dynamic">
+    <h1>Dodaj restaurację:</h1>
+    <el-form :model="restaurantAddForm" class="demo-dynamic">
+      <el-row>
+        <el-col :offset="3" :span="7">
           <el-form-item
-              prop="name"
-              label="Nazwa restauracji">
-            <el-input v-model="restaurantAddForm.name"></el-input>
+              prop="name">
+            <h2 class="h2Label">Nazwa restauracji:</h2>
+            <el-input v-model="restaurantAddForm.name" placeholder="Wpisz nazwę restauracji"></el-input>
           </el-form-item>
           <el-form-item
-              prop="longitude"
-              label="Adres">
+              prop="longitude">
+            <h2 class="h2Label">Długość geograficzna:</h2>
             <el-input v-model="restaurantAddForm.longitude"></el-input>
           </el-form-item>
-             <el-form-item
-              prop="latitude"
-              label="Adres">
+          <el-form-item
+              prop="latitude">
+            <h2 class="h2Label">Szerokość geograficzna:</h2>
             <el-input v-model="restaurantAddForm.latitude"></el-input>
           </el-form-item>
           <el-form-item
-              prop="food_type"
-              label="Rodzaj kuchni">
-            <el-input v-model="restaurantAddForm.food_type"></el-input>
+              prop="food_type">
+            <h2 class="h2Label">Rodzaj kuchni:</h2>
+            <el-input v-model="restaurantAddForm.food_type" placeholder="Wpisz rodzaj kuchni"></el-input>
           </el-form-item>
-
           <el-form-item
-              prop="price_rating"
-              label="Ocena">
+              prop="price_rating">
+            <h2 class="h2Label">Ocena:</h2>
             <el-input v-model="restaurantAddForm.price_rating"></el-input>
           </el-form-item>
-
+        </el-col>
+        <el-col :offset="4" :span="7">
           <el-form-item
-              prop="vegan"
-              label="Vegan">
+              prop="vegan">
+            <h2 class="h2Label">Kuchnia wegańska:</h2>
             <el-checkbox v-model="restaurantAddForm.vegan"></el-checkbox>
           </el-form-item>
-
           <el-form-item
-              prop="vegetarian"
-              label="Vegetarian">
+              prop="vegetarian">
+            <h2 class="h2Label">Kuchnia wegetariańska:</h2>
             <el-checkbox v-model="restaurantAddForm.vegetarian"></el-checkbox>
           </el-form-item>
-
           <el-form-item
-              prop="short_review"
-              label="Krótki opis">
-            <el-input v-model="restaurantAddForm.short_review"></el-input>
+              prop="short_review">
+            <h2 class="h2Label">Krótki opis:</h2>
+            <el-input type="textarea" placeholder="Wpisz krótki opis"
+                      v-model="restaurantAddForm.short_review"></el-input>
           </el-form-item>
+        </el-col>
+      </el-row>
+      <el-button @click="handleSubmit">Dodaj</el-button>
+    </el-form>
 
-          <el-button @click="handleSubmit">Dodaj</el-button>
-        </el-form>
-      </el-col>
-    </el-row>
   </div>
 </template>
 
 <script lang="ts">
   import {Component, Vue} from 'vue-property-decorator';
-  import Input from '../../components/input/Input';
   import {Getter, Action} from 'vuex-class';
 
   interface IAddRestaurantForm {
@@ -74,8 +73,7 @@
 
   @Component({
     components: {
-      Input,
-      name
+      name,
     },
   })
 
@@ -91,7 +89,7 @@
       short_review: '',
       vegetarian: false,
       vegan: false,
-      price_rating: 0
+      price_rating: 0,
     };
 
     handleSubmit() {
@@ -103,16 +101,33 @@
         short_review: this.restaurantAddForm.short_review,
         vegetarian: this.restaurantAddForm.vegetarian,
         vegan: this.restaurantAddForm.vegan,
-        price_rating: this.restaurantAddForm.price_rating
+        price_rating: this.restaurantAddForm.price_rating,
       }).then((response: any) => {
         if (response.success) {
-          console.log(this.restaurantAddForm.name);
           this.$router.push('/');
         }
         else {
-          console.log(response)
+          console.log(response);
         }
       });
     }
   }
 </script>
+
+<style lang="scss">
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #191a1c;
+    margin: 60px;
+  }
+
+  .h2Label {
+    font-size: 18px;
+    font-weight: 800;
+    color: #191a1c;
+    float: left;
+    margin: 16px;
+    margin-left: 0;
+  }
+</style>
