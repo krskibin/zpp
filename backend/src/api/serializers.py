@@ -1,16 +1,11 @@
 from rest_framework import serializers
 
-from .models import Restaurant, Review, Opinion, Address, Image
+from .models import Restaurant, Opinion, Address, Image
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = '__all__'
-
-class ReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Review
         fields = '__all__'
 
 class OpinionSerializer(serializers.ModelSerializer):

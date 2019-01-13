@@ -8,7 +8,7 @@ RATING_SCALE = (
     (2, 'Not good'),
     (3, 'Average'),
     (4, 'Awesome'),
-    (5, 'Best Place EVER')
+    (5, 'Best EVER')
 )
 
 FEATURES_CHOICES = (
@@ -37,7 +37,7 @@ class Restaurant(models.Model):
         opinions = Opinion.objects.filter(restaurant=self)
         avgRating = 0
         for opinion in opinions:
-            avgRating += ((opinion.food_review.rating+opinion.climate_review.rating+opinion.staff_review.rating+opinion.price_review.rating)/4)
+            avgRating += ((opinion.food_review+opinion.climate_review+opinion.staff_review+opinion.price_review)/4)
         return avgRating/opinions.size if opinion.size > 0 else 0
 
 
@@ -50,21 +50,16 @@ class Address(models.Model):
     postcode = models.CharField(max_length=6)
 
 
-class Review(models.Model):
-    id = models.AutoField(primary_key=True)
-    rating = models.PositiveIntegerField(default=1, choices=RATING_SCALE)
-    review = models.TextField()
-
-
 class Opinion(models.Model):
     id = models.AutoField(primary_key=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='restaurant')
     # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='%(class)s')
     date = models.DateField(default=datetime.date.today)
-    food_review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='foodReview')
-    climate_review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='climateReview')
-    staff_review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='staffReview')
-    price_review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='priceReview')
+    food_review = models.PositiveIntegerField(default=1, choices=RATING_SCALE)
+    climate_review = models.PositiveIntegerField(default=1, choices=RATING_SCALE)
+    staff_review = models.PositiveIntegerField(default=1, choices=RATING_SCALE)
+    price_review = models.PositiveIntegerField(default=1, choices=RATING_SCALE)
+    short_review = models.CharField(max_length=300, default='Short Review')
     receipt_number = models.CharField(max_length=30, default='#')
 
 class Features(models.Model):

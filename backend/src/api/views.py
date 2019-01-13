@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Restaurant, Review, Address, Opinion, Image
-from .serializers import RestaurantSerializer, ReviewSerializer, AddressSerializer, OpinionSerializer, ImageSerializer
+from .models import Restaurant, Address, Opinion, Image
+from .serializers import RestaurantSerializer, AddressSerializer, OpinionSerializer, ImageSerializer
 
 
 class RestaurantViewSet(viewsets.ModelViewSet):
@@ -11,10 +11,6 @@ class RestaurantViewSet(viewsets.ModelViewSet):
 class AddressViewSet(viewsets.ModelViewSet):
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
-
-class ReviewViewSet(viewsets.ModelViewSet):
-    queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
 
 class OpinionViewSet(viewsets.ModelViewSet):
     queryset = Opinion.objects.all()
