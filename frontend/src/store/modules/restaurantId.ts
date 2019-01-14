@@ -1,5 +1,4 @@
-import { RESTAURANT_ID } from '@/store/mutationTypes';
-
+import {RESTAURANT_ID} from '@/store/mutationTypes';
 import HTTP from '@/utils/http';
 
 
@@ -44,4 +43,3 @@ export default {
   actions,
   mutations,
 };
-

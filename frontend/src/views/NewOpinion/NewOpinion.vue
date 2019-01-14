@@ -4,110 +4,75 @@
       <el-row>
         <h1>Dodaj nową opinię</h1>
       </el-row>
-      <el-row :gutter="20">
-        <h2 class="h2o">Wybierz restaurację</h2>
-      </el-row>
-      <el-row :gutter="500">
-        <el-form-item prop="name">
-          <el-autocomplete
-              class="inline-input"
-              v-model="ruleForm.name"
-              placeholder="Wpisz nazwę restauracji"
-              :trigger-on-focus="false"
-              v-bind:class="{ 'is-invalid': missingName}"
-          ></el-autocomplete>
-          <div class="invalid-feedback marginLeft" v-show="missingName">Wybierz restaurację.</div>
-        </el-form-item>
-      </el-row>
-      <el-row :gutter="20">
-        <h2 class="h2o" style="margin-top: 30px;">Ocena ogólna</h2>
-      </el-row>
-      <el-row :gutter="500">
-        <el-rate class="general-rate"
-                 v-model="value5"
-                 show-score
-                 text-color="#f9d3a7"
-                 score-template="{value} points"
-        >
-        </el-rate>
+      <el-row>
+        <el-col :offset="3" :span="7">
+          <el-form-item prop="restaurant">
+            <h2 class="h2o">Wybierz restaurację</h2>
+            <el-select v-model="ruleForm.restaurant" filterable placeholder="Wybierz restaurację">
+              <el-option
+                  v-for="item in restaurantName"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item prop="short_review">
+            <h2 class="h2o" style="margin-top: 30px;">Twoja recenzja</h2>
+            <el-input class="input" type="textarea" :rows="6" placeholder="Napisz swoją recenzję"
+                      v-model="ruleForm.short_review" v-bind:class="{ 'is-invalid': missingDescription}"></el-input>
+            <div class="invalid-feedback" v-show="missingDescription">Musisz uzupełnić to pole.</div>
+          </el-form-item>
+        </el-col>
       </el-row>
 
-      <el-row :gutter="20">
-        <h2 class="h2o" style="margin-top: 30px;">Twoja recenzja</h2>
-      </el-row>
-      <el-row style="margin-top: 4px;">
-        <el-form-item prop="title">
-          <el-input class="input" placeholder="Wpisz tytuł recenzji" v-model="ruleForm.title"
-                    v-bind:class="{ 'is-invalid': missingTitle}"></el-input>
-          <div class="invalid-feedback" v-show="missingTitle">Wpisz tytuł recenzji.</div>
-        </el-form-item>
-      </el-row>
-      <el-form-item prop="description">
-        <el-row style="margin-top: 20px;">
-          <el-input class="input" type="textarea" :rows="6" placeholder="Napisz swoją recenzję"
-                    v-model="ruleForm.description" v-bind:class="{ 'is-invalid': missingDescription}"></el-input>
-          <div class="invalid-feedback" v-show="missingDescription">Musisz uzupełnić to pole.</div>
-        </el-row>
-      </el-form-item>
-      <el-row style="margin-top: 30px;">
+      <el-row>
         <el-col :span="12">
-          <el-row :gutter="20">
+          <el-form-item prop="food_review">
             <h3>Jedzenie</h3>
-          </el-row>
-          <el-row :gutter="500">
             <el-rate
-                v-model="value5"
+                v-model="ruleForm.food_review"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
-          </el-row>
-        </el-col>
-        <el-col :span="12">
-          <el-row :gutter="20">
-            <h3>Klimat</h3>
-          </el-row>
-          <el-row :gutter="500">
-            <el-rate
-                v-model="value5"
-                show-score
-                text-color="#f9d3a7"
-                score-template="{value} points">
-            </el-rate>
-          </el-row>
-        </el-col>
-      </el-row>
-      <el-row style="margin-top: 30px;">
-        <el-col :span="12">
-          <el-row :gutter="20">
-            <h3>Obsługa</h3>
-          </el-row>
-          <el-row :gutter="500">
-            <el-rate
-                v-model="value5"
-                show-score
-                text-color="#f9d3a7"
-                score-template="{value} points">
-            </el-rate>
-          </el-row>
-        </el-col>
-        <el-col :span="12">
-          <el-row :gutter="20">
-            <h3>Cena</h3>
-          </el-row>
-          <el-row :gutter="500">
-            <el-rate
-                v-model="value5"
-                show-score
-                text-color="#f9d3a7"
-                score-template="{value} points">
-            </el-rate>
-          </el-row>
-        </el-col>
-      </el-row>
-      <el-row style="margin-top: 40px; margin-bottom: 50px;">
-        <el-button @click="submitForm">Dodaj opinię</el-button>
+          </el-form-item>
 
+          <el-form-item prop="climate_review">
+            <h3>Klimat</h3>
+            <el-rate
+                v-model="ruleForm.climate_review"
+                show-score
+                text-color="#f9d3a7"
+                score-template="{value} points">
+            </el-rate>
+          </el-form-item>
+        </el-col>
+
+        <el-col :span="12">
+          <el-form-item prop="staff_review">
+            <h3>Obsługa</h3>
+            <el-rate
+                v-model="ruleForm.staff_review"
+                show-score
+                text-color="#f9d3a7"
+                score-template="{value} points">
+            </el-rate>
+          </el-form-item>
+
+          <el-form-item prop="price_review">
+            <h3>Cena</h3>
+            <el-rate
+                v-model="ruleForm.price_review"
+                show-score
+                text-color="#f9d3a7"
+                score-template="{value} points">
+            </el-rate>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-button @click="submitForm">Dodaj opinię</el-button>
       </el-row>
     </el-form>
   </div>
@@ -115,14 +80,20 @@
 
 <script lang="ts">
   interface ruleForm {
-    name: string;
-    title: string;
-    description: string;
+    date: string;
+    receiptNumber: string;
+    restaurant: '';
+    food_review: number;
+    climate_review: number;
+    staff_review: number;
+    price_review: number;
+    short_review: string;
   }
 
   import {Component, Vue} from 'vue-property-decorator';
   import Input from '../../components/input/Input.vue';
   import Stars from '../../components/stars/Stars.vue';
+  import {Getter, Action} from 'vuex-class';
 
   @Component({
     components: {
@@ -131,19 +102,52 @@
     },
   })
   export default class NewOpinion extends Vue {
+    @Action('getRestaurantIdName') getRestaurantIdName: any;
+    @Getter('getRestaurantElement') restaurant: any;
+    @Action('addOpinion') addOpinion: any;
+
+    get restaurantName(): any {
+      return this.$store.state.restaurants.restaurantIDName;
+    }
+
+    private created() {
+      this.getRestaurantIdName();
+    }
+
     ruleForm: ruleForm = {
-      name: '',
-      title: '',
-      description: '',
+      date: new Date().toJSON().slice(0, 10).replace(/-/g, '/').toString(),
+      receiptNumber: 'x',
+      restaurant: '',
+      food_review: 0,
+      climate_review: 0,
+      staff_review: 0,
+      price_review: 0,
+      short_review: '',
     };
+
     missingName: boolean = false;
-    missingTitle: boolean = false;
     missingDescription: boolean = false;
 
     submitForm() {
-      this.ruleForm.name === '' ? this.missingName = true : this.missingName = false;
-      this.ruleForm.title === '' ? this.missingTitle = true : this.missingTitle = false;
-      this.ruleForm.description === '' ? this.missingDescription = true : this.missingDescription = false;
+      this.ruleForm.restaurant === '' ? this.missingName = true : this.missingName = false;
+      this.ruleForm.short_review === '' ? this.missingDescription = true : this.missingDescription = false;
+      this.addOpinion({
+        date: this.ruleForm.date,
+        reciptNumber: this.ruleForm.receiptNumber,
+        restaurant: this.ruleForm.restaurant,
+        food_review: this.ruleForm.food_review,
+        climate_review: this.ruleForm.climate_review,
+        staff_review: this.ruleForm.staff_review,
+        price_review: this.ruleForm.price_review,
+        short_review: this.ruleForm.short_review,
+      }).then((response: any) => {
+        if (response.success) {
+          this.$router.push('/');
+        }
+        else {
+          console.log(response);
+        }
+      });
     }
   }
 </script>
@@ -163,7 +167,7 @@
     color: #191a1c;
     float: left;
     margin: 16px;
-    margin-left: 100px;
+    margin-left: 0px;
   }
 
   el-button {
@@ -173,7 +177,6 @@
   .inline-input {
     width: 600px;
     float: left;
-    margin-left: 340px;
   }
 
   .general-rate {
@@ -184,13 +187,6 @@
   .input {
     width: 600px;
     float: left;
-    margin-left: 90px;
-  }
-
-  .newRestaurant {
-    position: fixed;
-    width: 100%;
-    height: 100%;
   }
 
   .is-invalid {
@@ -206,12 +202,15 @@
     position: absolute;
     border: 0;
     bottom: -30px;
-    margin-left: 100px;
     font-size: 12px;
     color: rosybrown;
   }
 
   .marginLeft {
     margin-left: 353px;
+  }
+
+  .el-select {
+    width: 100%;
   }
 </style>
