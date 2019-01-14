@@ -1,4 +1,4 @@
-import {RESTAURANTS_LIST, RESTAURANT_ADD, REVIEWS_LIST, RESTAURANTS_LIST_NAME} from '@/store/mutationTypes';
+import {RESTAURANTS_LIST, RESTAURANTS_LIST_NAME} from '@/store/mutationTypes';
 
 import HTTP from '@/utils/http';
 
@@ -35,7 +35,7 @@ const actions = {
       };
     }
   },
-   async getRestaurantIdName(ctx: any) {
+  async getRestaurantIdName(ctx: any) {
     try {
       const response = await HTTP.get('v1/restaurants/');
       if (response.data && response.data.results instanceof Array) {
@@ -57,7 +57,7 @@ const mutations = {
   [RESTAURANTS_LIST](storeState: State, payload: object[]) {
     storeState.restaurants = payload;
   },
-   [RESTAURANTS_LIST_NAME](storeState: State, payload: object[]) {
+  [RESTAURANTS_LIST_NAME](storeState: State, payload: object[]) {
     storeState.restaurantIDName = payload;
   },
 };
@@ -68,4 +68,3 @@ export default {
   actions,
   mutations,
 };
-

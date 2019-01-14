@@ -1,5 +1,4 @@
 import HTTP from '@/utils/http';
-import {AUTH_SAVE_USER, AUTH_DELETE_USER, AUTH_SAVE_INFO, SEND_EMAIL} from '@/store/mutationTypes';
 
 interface State {
   restaurantId: number | null;
@@ -38,7 +37,7 @@ const actions = {
       if (error.response.data) {
         return {
           success: false,
-          message: 'Unable with provided credentials',
+          message: 'Unable with provided data',
         };
       } else {
         return {

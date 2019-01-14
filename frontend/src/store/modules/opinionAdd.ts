@@ -1,31 +1,32 @@
 import HTTP from '@/utils/http';
-import {AUTH_SAVE_USER, AUTH_DELETE_USER, AUTH_SAVE_INFO, SEND_EMAIL} from '@/store/mutationTypes';
 
 interface State {
   date: string;
   receiptNumber: string;
   restaurant: number;
-  foodReview: number;
-  climateReview: number;
-  staffReview: number;
-  priceReview: number;
+  food_review: number;
+  climate_review: number;
+  staff_review: number;
+  price_review: number;
+  short_review: string;
 }
 
 const state: State = {
-  date: '',
-  receiptNumber: '',
-  restaurant: 0,
-  foodReview: 0,
-  climateReview: 0,
-  staffReview: 0,
-  priceReview: 0,
-};
+    date: '',
+    receiptNumber: '',
+    restaurant: 0,
+    food_review: 0,
+    climate_review: 0,
+    staff_review: 0,
+    price_review: 0,
+    short_review: '',
+  };
 
 
 const actions = {
   async addOpinion(ctx: any, opinionElement: any) {
     try {
-      const response = await HTTP.post('v1/restaurants/', opinionElement);
+      const response = await HTTP.post('v1/opinions/', opinionElement);
       return {
         success: true,
         message: 'Successfully',
@@ -34,7 +35,7 @@ const actions = {
       if (error.response.data) {
         return {
           success: false,
-          message: 'Unable with provided credentials',
+          message: 'Unable with provided data',
         };
       } else {
         return {

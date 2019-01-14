@@ -17,10 +17,10 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item prop="description">
+          <el-form-item prop="short_review">
             <h2 class="h2o" style="margin-top: 30px;">Twoja recenzja</h2>
             <el-input class="input" type="textarea" :rows="6" placeholder="Napisz swoją recenzję"
-                      v-model="ruleForm.description" v-bind:class="{ 'is-invalid': missingDescription}"></el-input>
+                      v-model="ruleForm.short_review" v-bind:class="{ 'is-invalid': missingDescription}"></el-input>
             <div class="invalid-feedback" v-show="missingDescription">Musisz uzupełnić to pole.</div>
           </el-form-item>
         </el-col>
@@ -28,20 +28,20 @@
 
       <el-row>
         <el-col :span="12">
-          <el-form-item prop="foodReview">
+          <el-form-item prop="food_review">
             <h3>Jedzenie</h3>
             <el-rate
-                v-model="ruleForm.foodReview"
+                v-model="ruleForm.food_review"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
           </el-form-item>
 
-          <el-form-item prop="climateReview">
+          <el-form-item prop="climate_review">
             <h3>Klimat</h3>
             <el-rate
-                v-model="ruleForm.climateReview"
+                v-model="ruleForm.climate_review"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
@@ -50,20 +50,20 @@
         </el-col>
 
         <el-col :span="12">
-          <el-form-item prop="staffReview">
+          <el-form-item prop="staff_review">
             <h3>Obsługa</h3>
             <el-rate
-                v-model="ruleForm.staffReview"
+                v-model="ruleForm.staff_review"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
             </el-rate>
           </el-form-item>
 
-          <el-form-item prop="priceReview">
+          <el-form-item prop="price_review">
             <h3>Cena</h3>
             <el-rate
-                v-model="ruleForm.priceReview"
+                v-model="ruleForm.price_review"
                 show-score
                 text-color="#f9d3a7"
                 score-template="{value} points">
@@ -80,14 +80,14 @@
 
 <script lang="ts">
   interface ruleForm {
-    name: string;
-    title: string;
-    description: string;
+    date: string;
+    receiptNumber: string;
     restaurant: '';
-    foodReview: number;
-    climateReview: number;
-    staffReview: number;
-    priceReview: number;
+    food_review: number;
+    climate_review: number;
+    staff_review: number;
+    price_review: number;
+    short_review: string;
   }
 
   import {Component, Vue} from 'vue-property-decorator';
@@ -104,6 +104,7 @@
   export default class NewOpinion extends Vue {
     @Action('getRestaurantIdName') getRestaurantIdName: any;
     @Getter('getRestaurantElement') restaurant: any;
+    @Action('addOpinion') addOpinion: any;
 
     get restaurantName(): any {
       return this.$store.state.restaurants.restaurantIDName;
@@ -114,25 +115,39 @@
     }
 
     ruleForm: ruleForm = {
-      name: '',
-      title: '',
-      description: '',
+      date: new Date().toJSON().slice(0, 10).replace(/-/g, '/').toString(),
+      receiptNumber: 'x',
       restaurant: '',
-      foodReview: 0,
-      climateReview: 0,
-      staffReview: 0,
-      priceReview: 0,
+      food_review: 0,
+      climate_review: 0,
+      staff_review: 0,
+      price_review: 0,
+      short_review: '',
     };
 
     missingName: boolean = false;
-    missingTitle: boolean = false;
     missingDescription: boolean = false;
 
     submitForm() {
-      console.log(this.ruleForm.restaurant)
-      this.ruleForm.name === '' ? this.missingName = true : this.missingName = false;
-      this.ruleForm.title === '' ? this.missingTitle = true : this.missingTitle = false;
-      this.ruleForm.description === '' ? this.missingDescription = true : this.missingDescription = false;
+      this.ruleForm.restaurant === '' ? this.missingName = true : this.missingName = false;
+      this.ruleForm.short_review === '' ? this.missingDescription = true : this.missingDescription = false;
+      this.addOpinion({
+        date: this.ruleForm.date,
+        reciptNumber: this.ruleForm.receiptNumber,
+        restaurant: this.ruleForm.restaurant,
+        food_review: this.ruleForm.food_review,
+        climate_review: this.ruleForm.climate_review,
+        staff_review: this.ruleForm.staff_review,
+        price_review: this.ruleForm.price_review,
+        short_review: this.ruleForm.short_review,
+      }).then((response: any) => {
+        if (response.success) {
+          this.$router.push('/');
+        }
+        else {
+          console.log(response);
+        }
+      });
     }
   }
 </script>
@@ -187,7 +202,6 @@
     position: absolute;
     border: 0;
     bottom: -30px;
-    margin-left: 100px;
     font-size: 12px;
     color: rosybrown;
   }
