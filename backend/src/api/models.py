@@ -69,7 +69,7 @@ class Features(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length=100, default=str(datetime.datetime.now()), blank=True, null=True, editable=False)
     imagefile = models.FileField(upload_to='images/', null=True, verbose_name="")
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, blank=True, null=True)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, blank=True, null=True, related_name='image')
     option = models.ForeignKey(Opinion, on_delete=models.CASCADE, blank=True, null=True)
 
 
