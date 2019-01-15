@@ -29,7 +29,7 @@ import {Component, Vue, Prop} from 'vue-property-decorator';
 export default class RestaurantCard extends Vue {
   getImagePath(imagefile) {
     if (imagefile.length > 0) {
-      return imagefile[0].imagefile.replace('backend:8000', 'localhost:8080')
+      return imagefile[0].imagefile.replace('backend:8000', window.location.host)
     }
     return 'https://u.profitroom.pl/2017.airporthotel.pl/thumb/0x700/uploads/Restauracja_Mirage/Restauracja-Mirage-Hotel-Airport-Okecie-Warszawa010.jpg'
   }
