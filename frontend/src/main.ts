@@ -8,7 +8,7 @@ import EvaIcons from 'vue-eva-icons'
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(EvaIcons);
 
-Vue.use(Element);
+Vue.use(Element, {locale});
 Vue.config.productionTip = false;
 
 new Vue({

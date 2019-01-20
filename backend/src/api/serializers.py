@@ -9,7 +9,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
-    image = ImageSerializer(many=True)
+    image = ImageSerializer(many=True, required=False)
     class Meta:
         model = Restaurant
         fields = '__all__'
