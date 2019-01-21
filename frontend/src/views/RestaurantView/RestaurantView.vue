@@ -39,14 +39,28 @@
         <p>Dania wegańskie: {{restaurantInfo.restaurant.veganOption ? "Tak" : "Nie"}}</p>
         <p>Dostępna toaleta:</p>
         <p>Dozwolone psy:</p>
+        
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="24"><h1 class="centerText">Opinie o lokalu</h1></el-col>
     </el-row>
+    <div v-for="(opinion, index) in opinionsArray">
+      <br><br>
+----------OPINIA NR: {{index}}  | ID: {{opinion.id}}----------<br>
+          <br>Data : {{ opinion.date }}
+          <br>FoodReview : {{ opinion.foodReview }}
+          <br>ClimateReview : {{ opinion.climateReview }}
+          <br>StaffReview : {{ opinion.staffReview }}
+          <br>PriceReview : {{ opinion.priceReview }}
+          <br>ShortReview : {{ opinion.shortReview }}
+    </div>
+
 
     <el-row class="rowOpinions">
       <el-col :span="6" :offset="3">
+
+
       </el-col>
     </el-row>
   </div>
@@ -64,15 +78,23 @@ import Opinion from '../../components/opinion/Opinion.vue';
   },
 })
 export default class RestaurantView extends Vue {
+  @Action('getRestaurantOpinion') getRestaurantOpinion: any;
   @Action('getRestaurant') getRestaurant: any;
   @Getter('getRestaurantElement') restaurant: any;
+  @Getter('getOpinions') opinions: any;
 
   get restaurantInfo(): any {
     return this.$store.state.restaurant;
   }
 
+  get opinionsArray(): any {
+    return this.$store.state.restaurant.opinions;
+  }
+
   private created() {
-    this.getRestaurant(this.$route.params.id);
+    var id = this.$route.params.id
+    this.getRestaurantOpinion(id);
+    this.getRestaurant(id);
   }
 
 }
