@@ -42,28 +42,28 @@
         <p>Dania wegańskie: {{restaurantInfo.restaurant.veganOption ? "Tak" : "Nie"}}</p>
         <p>Dostępna toaleta:</p>
         <p>Dozwolone psy:</p>
-
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="24"><h1 class="centerText">Opinie o lokalu</h1></el-col>
     </el-row>
-    <div v-for="(opinion, index) in opinionsArray">
-      <br><br>
-----------OPINIA NR: {{index}}  | ID: {{opinion.id}}----------<br>
-          <br>Data : {{ opinion.date }}
-          <br>FoodReview : {{ opinion.foodReview }}
-          <br>ClimateReview : {{ opinion.climateReview }}
-          <br>StaffReview : {{ opinion.staffReview }}
-          <br>PriceReview : {{ opinion.priceReview }}
-          <br>ShortReview : {{ opinion.shortReview }}
-    </div>
-
-
-    <el-row class="rowOpinions">
-      <el-col :span="6" :offset="3">
-
-
+    <el-row class="rowOpinions" v-for="(opinion, index) in opinionsArray">
+      <el-col :span="8" style="margin: 10px 0px 10px 0px">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span><b style="color: #f9d3a7">OPINIA NR: </b>{{index}} | <b style="color: #f9d3a7">ID: </b>{{opinion.id}}</span>
+          </div>
+          <b>Jedzenie:</b>
+          <el-rate v-model="opinion.foodReview" disabled/>
+          <b>Klimat:</b>
+          <el-rate v-model="opinion.climateReview" disabled/>
+          <b>Obsługa:</b>
+          <el-rate v-model="opinion.staffReview" disabled/>
+          <b>Cena:</b>
+          <el-rate v-model="opinion.priceReview" disabled/>
+          <p style="text-align: left "><b>Opinia:</b>
+            {{opinion.shortReview}}</p>
+        </el-card>
       </el-col>
     </el-row>
   </div>
