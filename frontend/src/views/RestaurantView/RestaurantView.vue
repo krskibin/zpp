@@ -47,8 +47,8 @@
     <el-row>
       <el-col :span="24"><h1 class="centerText">Opinie o lokalu</h1></el-col>
     </el-row>
-    <el-row class="rowOpinions" v-for="(opinion, index) in opinionsArray">
-      <el-col :span="8" style="margin: 10px 0px 10px 0px">
+    <el-row class="rowOpinions">
+      <el-col :span="8" style="margin: 10px 0px 10px 0px" v-for="(opinion, index) in opinionsArray">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span><b style="color: #f9d3a7">OPINIA NR: </b>{{index}} | <b style="color: #f9d3a7">ID: </b>{{opinion.id}}</span>
