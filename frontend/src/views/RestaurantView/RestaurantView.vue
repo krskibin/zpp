@@ -1,7 +1,9 @@
 <template>
   <div>
-    <img class="imgBackground"
+    <img v-if="getImagePath===''" class="imgBackground"
          src="https://u.profitroom.pl/2017.airporthotel.pl/thumb/0x700/uploads/Restauracja_Mirage/Restauracja-Mirage-Hotel-Airport-Okecie-Warszawa010.jpg"/>
+    <img v-else class="imgBackground"
+         :src="getImagePath"/>
     <span class="gradientBackground"/>
     <el-row>
       <el-col :span="24"><h1 class="centerText">{{restaurantInfo.restaurant.name}}</h1></el-col>
@@ -49,7 +51,7 @@
     </el-row>
     <el-row class="rowOpinions">
       <el-col :span="8" style="margin: 10px 0px 10px 0px" v-for="(opinion, index) in opinionsArray">
-        <el-card class="box-card">
+        <el-card class="box-card" :style="{margin: '3vh'}">
           <div slot="header" class="clearfix">
             <span><b style="color: #f9d3a7">OPINIA NR: </b>{{index}} | <b style="color: #f9d3a7">ID: </b>{{opinion.id}}</span>
           </div>
@@ -66,6 +68,7 @@
         </el-card>
       </el-col>
     </el-row>
+    {{  }}
   </div>
 </template>
 
@@ -74,6 +77,7 @@
 import {Component, Vue} from 'vue-property-decorator';
 import {Getter, Action} from 'vuex-class';
 import Opinion from '../../components/opinion/Opinion.vue';
+import _ from 'lodash';
 
 @Component({
   components: {
@@ -93,11 +97,18 @@ export default class RestaurantView extends Vue {
   get opinionsArray(): any {
     return this.$store.state.restaurant.opinions;
   }
+  get getImagePath() {
+    if (!_.isUndefined(this.restaurantInfo.restaurant.image[0])) {
+      debugger
+      return this.restaurantInfo.restaurant.image[0].imagefile.replace('backend:8000', window.location.host)
+    }
+    return ''
+  }
 
   private created() {
     var id = this.$route.params.id
     this.getRestaurantOpinion(id);
-    this.getRestaurant(id);
+    this.getRestaurant(id).then(()=>{this.getImagePath()})
   }
 
   routeToNewOpinion() {this.$router.push('/new-opinion');}
