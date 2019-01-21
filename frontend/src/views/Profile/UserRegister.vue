@@ -1,5 +1,8 @@
 <template>
   <div>
+    <img class="imgBackground"
+         src="https://u.profitroom.pl/2017.airporthotel.pl/thumb/0x700/uploads/Restauracja_Mirage/Restauracja-Mirage-Hotel-Airport-Okecie-Warszawa010.jpg"/>
+    <span class="gradientBackground"/>
     <h1>Register</h1>
     <el-row>
       <el-col :offset="8" :span="8">

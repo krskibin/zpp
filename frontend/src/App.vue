@@ -100,7 +100,7 @@ body {
 
 .app-menu-vertical  {
   width: 65px;
-  height: 100%;
+  height: 99%;
 
   .menu-elements-wrapper {
     height: 100%;

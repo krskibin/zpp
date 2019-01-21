@@ -1,4 +1,6 @@
+
 <template>
+
   <div>
     <img class="imgBackground"
          src="https://u.profitroom.pl/2017.airporthotel.pl/thumb/0x700/uploads/Restauracja_Mirage/Restauracja-Mirage-Hotel-Airport-Okecie-Warszawa010.jpg"/>
@@ -54,7 +56,10 @@
   }
 </script>
 
+
+
 <style lang="scss">
+
   h2 {
     font-family: 'Open Sans', sans-serif;
     font-size: 28px;
@@ -77,48 +82,5 @@
     &:focus, &:hover {
       color: black;
     }
-  }
-
-  .backgroundImage {
-    background-size: cover;
-    background-attachment: fixed;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0.1;
-    top: 0;
-    left: 65px;
-  }
-
-  .backgroundImage:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 300px;
-    bottom: 0;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 20%, rgba(0, 212, 255, 0) 100%);
-    opacity: 1;
-  }
-
-  .imgBackground {
-    opacity: 0.1;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-  }
-
-  .gradientBackground {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 1;
-    z-index: -1;
-    background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
   }
 </style>

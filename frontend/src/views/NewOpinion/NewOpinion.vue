@@ -1,5 +1,8 @@
 <template>
   <div class="newRestaurant">
+    <img class="imgBackground"
+         src="https://u.profitroom.pl/2017.airporthotel.pl/thumb/0x700/uploads/Restauracja_Mirage/Restauracja-Mirage-Hotel-Airport-Okecie-Warszawa010.jpg"/>
+    <span class="gradientBackground"/>
     <el-form model="ruleForm" ref="ruleForm">
       <el-row>
         <h1>Dodaj nową opinię</h1>

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <img class="imgBackground"
+         src="https://u.profitroom.pl/2017.airporthotel.pl/thumb/0x700/uploads/Restauracja_Mirage/Restauracja-Mirage-Hotel-Airport-Okecie-Warszawa010.jpg"/>
+    <span class="gradientBackground"/>
     <el-row>
       <el-col :span="24"><h1 class="centerText">{{restaurantInfo.restaurant.name}}</h1></el-col>
     </el-row>
@@ -13,7 +16,7 @@
     </el-row>
     <el-row>
       <el-col :span="24" class="centerText">
-        <el-button class="buttonStyle">
+        <el-button class="buttonStyle" @click="routeToNewOpinion">
           Dodaj opinię
         </el-button>
       </el-col>
@@ -39,7 +42,7 @@
         <p>Dania wegańskie: {{restaurantInfo.restaurant.veganOption ? "Tak" : "Nie"}}</p>
         <p>Dostępna toaleta:</p>
         <p>Dozwolone psy:</p>
-        
+
       </el-col>
     </el-row>
     <el-row>
@@ -96,6 +99,8 @@ export default class RestaurantView extends Vue {
     this.getRestaurantOpinion(id);
     this.getRestaurant(id);
   }
+
+  routeToNewOpinion() {this.$router.push('/new-opinion');}
 
 }
 </script>

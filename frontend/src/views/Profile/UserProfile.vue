@@ -1,5 +1,8 @@
 <template>
   <div>
+    <img class="imgBackground"
+         src="https://u.profitroom.pl/2017.airporthotel.pl/thumb/0x700/uploads/Restauracja_Mirage/Restauracja-Mirage-Hotel-Airport-Okecie-Warszawa010.jpg"/>
+    <span class="gradientBackground"/>
     <el-row> <h1 class="title">Mój profil</h1> </el-row>
     <el-row> <h2 class="label">Adres email</h2> </el-row>
     <el-row> <h3 class="email">{{ userInfo.email }}</h3> </el-row>

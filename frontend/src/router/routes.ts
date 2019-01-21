@@ -10,11 +10,17 @@ export const routes = [
     path: '/new-restaurant',
     name: 'newRestaurant',
     component: () => import('../views/NewRestaurant/NewRestaurant.vue'),
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/new-opinion',
     name: 'newOpinion',
     component: () => import('../views/NewOpinion/NewOpinion.vue'),
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '/profile',
@@ -38,6 +44,9 @@ export const routes = [
     path: '/restaurant/:id',
     name: 'viewRestaurant',
     component: () => import('../views/RestaurantView/RestaurantView.vue'),
+    meta: {
+      auth: true,
+    },
   },
   {
     path: '*',
