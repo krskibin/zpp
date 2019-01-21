@@ -5,9 +5,6 @@ export const routes = [
     path: '/',
     name: 'home',
     component: Home,
-     meta: {
-      auth: true,
-    },
   },
   {
     path: '/new-restaurant',
@@ -47,9 +44,6 @@ export const routes = [
     path: '/restaurant/:id',
     name: 'viewRestaurant',
     component: () => import('../views/RestaurantView/RestaurantView.vue'),
-    meta: {
-      auth: true,
-    },
   },
   {
     path: '*',

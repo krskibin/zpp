@@ -61,7 +61,7 @@ export default class App extends Vue {
 
   logoutUser() {
     this.logout();
-    this.$router.push('login');
+    this.$router.go();
   }
 
 }
