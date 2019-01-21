@@ -17,11 +17,7 @@
           </el-button>
         </el-col>
       </el-row>
-      <el-row>
-        <h2>
-          Ostatnio dodane:
-        </h2>
-      </el-row>
+      
       <el-row>
         <RestaurantCard :restaurants='restaurants'/>
       </el-row>

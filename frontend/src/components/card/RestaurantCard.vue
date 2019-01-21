@@ -31,7 +31,7 @@ export default class RestaurantCard extends Vue {
     if (imagefile.length > 0) {
       return imagefile[0].imagefile.replace('backend:8000', window.location.host)
     }
-    return 'https://u.profitroom.pl/2017.airporthotel.pl/thumb/0x700/uploads/Restauracja_Mirage/Restauracja-Mirage-Hotel-Airport-Okecie-Warszawa010.jpg'
+    return 'http://www.highlandradio.com/wp-content/uploads/2014/06/restaurant.jpg'
   }
   goToRestaurantPage(restaurantId) {
     console.log(restaurantId)
