@@ -80,7 +80,6 @@
 
 <script lang="ts">
   interface ruleForm {
-    date: string;
     receiptNumber: string;
     restaurant: '';
     food_review: number;
@@ -115,7 +114,6 @@
     }
 
     ruleForm: ruleForm = {
-      date: new Date().toJSON().slice(0, 10).replace(/-/g, '/').toString(),
       receiptNumber: 'x',
       restaurant: '',
       food_review: 0,
@@ -132,7 +130,6 @@
       this.ruleForm.restaurant === '' ? this.missingName = true : this.missingName = false;
       this.ruleForm.short_review === '' ? this.missingDescription = true : this.missingDescription = false;
       this.addOpinion({
-        date: this.ruleForm.date,
         reciptNumber: this.ruleForm.receiptNumber,
         restaurant: this.ruleForm.restaurant,
         food_review: this.ruleForm.food_review,

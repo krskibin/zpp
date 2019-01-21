@@ -17,6 +17,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
 class OpinionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Opinion
+        read_only_fields = ('avg_rating', 'date')
         fields = '__all__'
 
 class AddressSerializer(serializers.ModelSerializer):

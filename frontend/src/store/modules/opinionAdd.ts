@@ -1,7 +1,6 @@
 import HTTP from '@/utils/http';
 
 interface State {
-  date: string;
   receiptNumber: string;
   restaurant: number;
   food_review: number;
@@ -12,7 +11,6 @@ interface State {
 }
 
 const state: State = {
-    date: '',
     receiptNumber: '',
     restaurant: 0,
     food_review: 0,
