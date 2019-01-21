@@ -54,7 +54,7 @@ class Opinion(models.Model):
     id = models.AutoField(primary_key=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='restaurant')
     # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='%(class)s')
-    date = models.DateField(default=datetime.date.today)
+    date = models.DateTimeField(auto_now_add=True)
     food_review = models.PositiveIntegerField(default=1, choices=RATING_SCALE)
     climate_review = models.PositiveIntegerField(default=1, choices=RATING_SCALE)
     staff_review = models.PositiveIntegerField(default=1, choices=RATING_SCALE)
@@ -69,7 +69,7 @@ class Features(models.Model):
 class Image(models.Model):
     name = models.CharField(max_length=100, default=str(datetime.datetime.now()), blank=True, null=True, editable=False)
     imagefile = models.FileField(upload_to='images/', null=True, verbose_name="")
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, blank=True, null=True)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, blank=True, null=True, related_name='image')
     option = models.ForeignKey(Opinion, on_delete=models.CASCADE, blank=True, null=True)
 
 

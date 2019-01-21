@@ -20,7 +20,9 @@
           Ostatnio dodane:
         </h2>
       </el-row>
-      <RestaurantList/>
+      <el-row>
+        <RestaurantCard :restaurants='restaurants'/>
+      </el-row>
     </div>
   </div>
 </template>
@@ -31,10 +33,11 @@
 
   import RestaurantList from '@/components/restaurantList/RestaurantList.vue';
   import Input from '@/components/input/Input.vue';
+  import RestaurantCard from '@/components/card/RestaurantCard.vue';
 
   @Component({
     components: {
-      RestaurantList, Input,
+      RestaurantList, Input, RestaurantCard,
     },
   })
   export default class Home extends Vue {
