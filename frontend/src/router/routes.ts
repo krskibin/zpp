@@ -5,6 +5,9 @@ export const routes = [
     path: '/',
     name: 'home',
     component: Home,
+     meta: {
+      auth: true,
+    },
   },
   {
     path: '/new-restaurant',
