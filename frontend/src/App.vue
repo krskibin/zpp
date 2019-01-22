@@ -56,12 +56,12 @@ export default class App extends Vue {
   }
 
   handleSelect(name: string) {
-    this.$router.push("/"+name);
+    this.$router.push('/' + name);
   }
 
   logoutUser() {
     this.logout();
-    this.$router.go();
+    this.$router.go(0);
   }
 
 }

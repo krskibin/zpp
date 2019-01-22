@@ -23,18 +23,18 @@ import {Component, Vue, Prop} from 'vue-property-decorator';
   props: {
     restaurants: {
     },
-  }
+  },
 })
 export default class RestaurantCard extends Vue {
   getImagePath(imagefile) {
     if (imagefile.length > 0) {
-      return imagefile[0].imagefile.replace('backend:8000', window.location.host)
+      return imagefile[0].imagefile.replace('backend:8000', window.location.host);
     }
-    return 'http://www.highlandradio.com/wp-content/uploads/2014/06/restaurant.jpg'
+    return 'http://www.highlandradio.com/wp-content/uploads/2014/06/restaurant.jpg';
   }
+
   goToRestaurantPage(restaurantId) {
-    console.log(restaurantId)
-    this.$router.push({ name: 'viewRestaurant', params: { id: restaurantId } })
+    this.$router.push({ name: 'viewRestaurant', params: { id: restaurantId } });
   }
 }
 </script>

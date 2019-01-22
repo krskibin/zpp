@@ -50,7 +50,7 @@
       <el-col :span="24"><h1 class="centerText">Opinie o lokalu</h1></el-col>
     </el-row>
     <el-row class="rowOpinions">
-      <el-col :span="8" style="margin: 10px 0px 10px 0px" v-for="(opinion, index) in opinionsArray">
+      <el-col :span="8" style="margin: 10px 0px 10px 0px" v-for="(opinion, index) in opinionsArray" :key="index">
         <el-card class="box-card" :style="{margin: '3vh'}">
           <div slot="header" class="clearfix">
             <span><b style="color: #f9d3a7">OPINIA NR: </b>{{index}} | <b style="color: #f9d3a7">ID: </b>{{opinion.id}}</span>
@@ -73,7 +73,6 @@
 </template>
 
 <script lang="ts">
-
 import {Component, Vue} from 'vue-property-decorator';
 import {Getter, Action} from 'vuex-class';
 import Opinion from '../../components/opinion/Opinion.vue';
@@ -85,10 +84,6 @@ import _ from 'lodash';
   },
 })
 export default class RestaurantView extends Vue {
-  @Action('getRestaurantOpinion') getRestaurantOpinion: any;
-  @Action('getRestaurant') getRestaurant: any;
-  @Getter('getRestaurantElement') restaurant: any;
-  @Getter('getOpinions') opinions: any;
 
   get restaurantInfo(): any {
     return this.$store.state.restaurant;
@@ -100,19 +95,24 @@ export default class RestaurantView extends Vue {
   get getImagePath() {
     if (this.restaurantInfo.restaurant.image) {
       if (!_.isUndefined(this.restaurantInfo.restaurant.image[0])) {
-        return this.restaurantInfo.restaurant.image[0].imagefile.replace('backend:8000', window.location.host)
+        return this.restaurantInfo.restaurant.image[0].imagefile.replace('backend:8000', window.location.host);
       }
     }
-    return ''
+    return '';
   }
+
+  @Action('getRestaurantOpinion') getRestaurantOpinion: any;
+  @Action('getRestaurant') getRestaurant: any;
+  @Getter('getRestaurantElement') restaurant: any;
+  @Getter('getOpinions') opinions: any;
+
+  routeToNewOpinion() {this.$router.push('/new-opinion'); }
 
   private created() {
-    var id = this.$route.params.id
+    const id = this.$route.params.id;
     this.getRestaurantOpinion(id);
-    this.getRestaurant(id).then(()=>{this.getImagePath()})
+    this.getRestaurant(id).then(() => { this.getImagePath(); } );
   }
-
-  routeToNewOpinion() {this.$router.push('/new-opinion');}
 
 }
 </script>

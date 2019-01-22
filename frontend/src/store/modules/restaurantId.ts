@@ -41,8 +41,8 @@ const actions = {
     try {
       const response = await HTTP.get(`v1/opinions/`);
       if (response.data  && response.data.results instanceof Array) {
-        function isRestaurantOpinion(elem, i, array){
-            return elem.restaurant==id
+        function isRestaurantOpinion(elem: any, i: any, array: any) {
+            return elem.restaurant === id;
         }
         const opinions = response.data.results.filter(isRestaurantOpinion);
         ctx.commit(OPINION_ID, opinions);

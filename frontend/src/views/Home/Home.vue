@@ -35,62 +35,64 @@
 </template>
 
 <script lang="ts">
-  import {Component, Vue} from 'vue-property-decorator';
-  import {Getter, Action} from 'vuex-class';
+import {Component, Vue} from 'vue-property-decorator';
+import {Getter, Action} from 'vuex-class';
 
-  import RestaurantList from '@/components/restaurantList/RestaurantList.vue';
-  import Input from '@/components/input/Input.vue';
-  import RestaurantCard from '@/components/card/RestaurantCard.vue';
+import RestaurantList from '@/components/restaurantList/RestaurantList.vue';
+import Input from '@/components/input/Input.vue';
+import RestaurantCard from '@/components/card/RestaurantCard.vue';
 
-  @Component({
-    components: {
-      RestaurantList, Input, RestaurantCard,
-    },
-  })
-  export default class Home extends Vue {
-    @Action('getRestaurants') getRestaurants: any;
-    @Getter('getRestaurantList') restaurantList: any;
-    value9 = [] 
-    loading = false
-    restaurants = []
+@Component({
+  components: {
+    RestaurantList, Input, RestaurantCard,
+  },
+})
+export default class Home extends Vue {
+  @Action('getRestaurants') getRestaurants: any;
+  @Getter('getRestaurantList') restaurantList: any;
+  value9 = [];
+  loading = false;
+  restaurants = [];
 
     get value() {
-      let res = []
+      const res: any[] = [];
+      let rest: any = {};
       if (this.value9.length > 0) {
-        for (let val of this.value9) {
-          for(let rest of this.restaurants) {
+        for (const val of this.value9) {
+          for (rest of this.restaurants) {
+            if (rest.id === undefined) {
+              return;
+            }
             if (rest.id === val) {
-              res.push(rest)
+              res.push(rest);
           }
         }
       }
-        return res
+        return res;
       }
-      else {
-        return this.restaurantList
-      }
-    }
+      return this.restaurantList;
+  }
 
-    remoteMethod(query) {
-      if (query !== '') {
-        this.loading = true;
-        setTimeout(() => {
-          this.loading = false;
-          this.restaurants = this.restaurants.filter(item => {
-            return item.name.toLowerCase()
-              .indexOf(query.toLowerCase()) > -1;
-          });
-        }, 200);
-      } else {
-        this.restaurants = this.restaurantList;
-      }
+  remoteMethod(query: string) {
+    if (query !== '') {
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+        this.restaurants = this.restaurants.filter((item: any) => {
+          return item.name.toLowerCase()
+            .indexOf(query.toLowerCase()) > -1;
+        });
+      }, 200);
+    } else {
+      this.restaurants = this.restaurantList;
     }
+  }
 
-    private created() {
-      this.getRestaurants().then(() => {
-        this.restaurants = this.restaurantList})
-      }
+  private created() {
+    this.getRestaurants().then(() => {
+      this.restaurants = this.restaurantList; });
     }
+  }
 </script>
 
 

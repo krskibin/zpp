@@ -22,6 +22,6 @@ export default new Vuex.Store({
     restaurant,
     restaurantAdd,
     opinionAdd,
-    opinions
+    opinions,
   },
 });

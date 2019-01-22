@@ -109,9 +109,6 @@
         if (response.success) {
           this.$router.push('/');
         }
-        else {
-          console.log(response);
-        }
       });
     }
   }

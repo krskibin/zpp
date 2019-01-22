@@ -4,9 +4,9 @@ import router from './router/';
 import store from './store/store';
 import Element from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/en';
-import EvaIcons from 'vue-eva-icons'
+import EvaIcons from 'vue-eva-icons';
 import 'element-ui/lib/theme-chalk/index.css';
-import './assets/styles/globalStyle.css'
+import './assets/styles/globalStyle.css';
 Vue.use(EvaIcons);
 
 Vue.use(Element, {locale});

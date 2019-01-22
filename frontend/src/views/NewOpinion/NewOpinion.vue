@@ -82,74 +82,71 @@
 </template>
 
 <script lang="ts">
-  interface ruleForm {
-    receiptNumber: string;
-    restaurant: '';
-    food_review: number;
-    climate_review: number;
-    staff_review: number;
-    price_review: number;
-    short_review: string;
+interface RuleForm {
+  receiptNumber: string;
+  restaurant: '';
+  food_review: number;
+  climate_review: number;
+  staff_review: number;
+  price_review: number;
+  short_review: string;
+}
+
+import {Component, Vue} from 'vue-property-decorator';
+import Input from '../../components/input/Input.vue';
+import Stars from '../../components/stars/Stars.vue';
+import {Getter, Action} from 'vuex-class';
+
+@Component({
+  components: {
+    Input,
+    Stars,
+  },
+})
+export default class NewOpinion extends Vue {
+
+  get restaurantName(): any {
+    return this.$store.state.restaurants.restaurantIDName;
+  }
+  @Action('getRestaurantIdName') getRestaurantIdName: any;
+  @Getter('getRestaurantElement') restaurant: any;
+  @Action('addOpinion') addOpinion: any;
+
+  ruleForm: RuleForm = {
+    receiptNumber: 'x',
+    restaurant: '',
+    food_review: 0,
+    climate_review: 0,
+    staff_review: 0,
+    price_review: 0,
+    short_review: '',
+  };
+
+  missingName: boolean = false;
+  missingDescription: boolean = false;
+
+  submitForm() {
+    this.ruleForm.restaurant === '' ? this.missingName = true : this.missingName = false;
+    this.ruleForm.short_review === '' ? this.missingDescription = true : this.missingDescription = false;
+    this.addOpinion({
+      reciptNumber: this.ruleForm.receiptNumber,
+      restaurant: this.ruleForm.restaurant,
+      food_review: this.ruleForm.food_review,
+      climate_review: this.ruleForm.climate_review,
+      staff_review: this.ruleForm.staff_review,
+      price_review: this.ruleForm.price_review,
+      short_review: this.ruleForm.short_review,
+    }).then((response: any) => {
+      if (response.success) {
+        this.$router.push('/');
+      }
+    });
   }
 
-  import {Component, Vue} from 'vue-property-decorator';
-  import Input from '../../components/input/Input.vue';
-  import Stars from '../../components/stars/Stars.vue';
-  import {Getter, Action} from 'vuex-class';
-
-  @Component({
-    components: {
-      Input,
-      Stars,
-    },
-  })
-  export default class NewOpinion extends Vue {
-    @Action('getRestaurantIdName') getRestaurantIdName: any;
-    @Getter('getRestaurantElement') restaurant: any;
-    @Action('addOpinion') addOpinion: any;
-
-    get restaurantName(): any {
-      return this.$store.state.restaurants.restaurantIDName;
-    }
-
-    private created() {
-      this.getRestaurantIdName();
-    }
-
-    ruleForm: ruleForm = {
-      receiptNumber: 'x',
-      restaurant: '',
-      food_review: 0,
-      climate_review: 0,
-      staff_review: 0,
-      price_review: 0,
-      short_review: '',
-    };
-
-    missingName: boolean = false;
-    missingDescription: boolean = false;
-
-    submitForm() {
-      this.ruleForm.restaurant === '' ? this.missingName = true : this.missingName = false;
-      this.ruleForm.short_review === '' ? this.missingDescription = true : this.missingDescription = false;
-      this.addOpinion({
-        reciptNumber: this.ruleForm.receiptNumber,
-        restaurant: this.ruleForm.restaurant,
-        food_review: this.ruleForm.food_review,
-        climate_review: this.ruleForm.climate_review,
-        staff_review: this.ruleForm.staff_review,
-        price_review: this.ruleForm.price_review,
-        short_review: this.ruleForm.short_review,
-      }).then((response: any) => {
-        if (response.success) {
-          this.$router.push('/');
-        }
-        else {
-          console.log(response);
-        }
-      });
-    }
+  private created() {
+    this.getRestaurantIdName();
   }
+}
 </script>
 
 <style lang="scss">

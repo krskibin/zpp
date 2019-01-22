@@ -50,7 +50,7 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
-  if (to.name == 'home' && token ) {
+  if (to.name === 'home' && token ) {
     try {
       const verifyResponse = await store.dispatch('verifyToken');
       if (!verifyResponse.success) {
@@ -78,7 +78,7 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
-  if (to.name == 'viewRestaurant' && token ) {
+  if (to.name === 'viewRestaurant' && token ) {
     try {
       const verifyResponse = await store.dispatch('verifyToken');
       if (!verifyResponse.success) {
