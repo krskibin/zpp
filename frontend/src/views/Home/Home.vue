@@ -95,7 +95,7 @@
 
 
 
-<style lang="scss">
+<style scoped lang="scss">
 
   h2 {
     font-family: 'Open Sans', sans-serif;
