@@ -7,7 +7,6 @@
             <div style="padding: 14px;">
               <span>{{restaurant.name}}</span>
               <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
                 <el-button type="text" class="button" @click='goToRestaurantPage(restaurant.id)'>More</el-button>
               </div>
             </div>
@@ -31,7 +30,7 @@ export default class RestaurantCard extends Vue {
     if (imagefile.length > 0) {
       return imagefile[0].imagefile.replace('backend:8000', window.location.host)
     }
-    return 'https://u.profitroom.pl/2017.airporthotel.pl/thumb/0x700/uploads/Restauracja_Mirage/Restauracja-Mirage-Hotel-Airport-Okecie-Warszawa010.jpg'
+    return 'http://www.highlandradio.com/wp-content/uploads/2014/06/restaurant.jpg'
   }
   goToRestaurantPage(restaurantId) {
     console.log(restaurantId)
@@ -41,33 +40,33 @@ export default class RestaurantCard extends Vue {
 </script>
 
 <style scoped>
-.time {
-  font-size: 13px;
-  color: #999;
-}
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
+  
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
 
-.bottom {
-  margin-top: 13px;
-  line-height: 12px;
-}
+  .button {
+    padding: 0;
+    float: right;
+  }
 
-.button {
-  padding: 0;
-  float: right;
-}
+  .image {
+    width: 100%;
+    display: block;
+  }
 
-.image {
-  width: 100%;
-  display: block;
-}
-
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-}
-
-.clearfix:after {
-  clear: both
-}
+  .clearfix:before,
+  .clearfix:after {
+      display: table;
+      content: "";
+  }
+  
+  .clearfix:after {
+      clear: both
+  }
 </style>

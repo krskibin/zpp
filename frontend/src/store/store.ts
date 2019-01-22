@@ -7,6 +7,7 @@ import reviews from './modules/reviews';
 import restaurantAdd from './modules/restaurantAdd';
 import restaurant from './modules/restaurantId';
 import opinionAdd from './modules/opinionAdd';
+import opinions from './modules/restaurantId';
 
 Vue.use(Vuex);
 
@@ -21,5 +22,6 @@ export default new Vuex.Store({
     restaurant,
     restaurantAdd,
     opinionAdd,
+    opinions
   },
 });

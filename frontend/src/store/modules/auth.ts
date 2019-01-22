@@ -22,9 +22,6 @@ const getters = {
   getFirstName: (storeState: State) => storeState.firstName,
   getLastName: (storeState: State) => storeState.lastName,
   getUserId: (storeState: State) => storeState.userId,
-  getUserInfo: (storeState: State) => ({
-    email: storeState.email || '',
-  }),
 };
 
 const actions = {

@@ -8,7 +8,7 @@
                  @select="handleSelect">
           <div class="menu-elements-wrapper">
             <div class="menu-elements-top-section">
-              <el-menu-item index="/">
+              <el-menu-item index="">
                 <eva-icon name="search" animation="pulse"></eva-icon>
                 <span slot="title">Szukaj</span>
               </el-menu-item>
@@ -56,12 +56,12 @@ export default class App extends Vue {
   }
 
   handleSelect(name: string) {
-    this.$router.push(name);
+    this.$router.push("/"+name);
   }
 
   logoutUser() {
     this.logout();
-    this.$router.push('login');
+    this.$router.go();
   }
 
 }
@@ -100,7 +100,7 @@ body {
 
 .app-menu-vertical  {
   width: 65px;
-  height: 100%;
+  height: 99%;
 
   .menu-elements-wrapper {
     height: 100%;

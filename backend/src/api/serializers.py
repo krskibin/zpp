@@ -10,6 +10,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class RestaurantSerializer(serializers.ModelSerializer):
     image = ImageSerializer(many=True, required=False)
+    avg_rating = serializers.ReadOnlyField()
     class Meta:
         model = Restaurant
         fields = '__all__'
@@ -17,7 +18,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
 class OpinionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Opinion
-        read_only_fields = ('avg_rating', 'date')
+        read_only_fields = ('date',)
         fields = '__all__'
 
 class AddressSerializer(serializers.ModelSerializer):
