@@ -13,7 +13,7 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <el-rate v-model="restaurantInfo.restaurant.longitude" disabled class="starsBig"/>
+        <el-rate v-model="restaurantInfo.restaurant.avgRating" disabled class="starsBig"/>
       </el-col>
     </el-row>
     <el-row>
@@ -68,8 +68,8 @@
         </el-card>
       </el-col>
     </el-row>
-    {{  }}
   </div>
+
 </template>
 
 <script lang="ts">
@@ -98,9 +98,10 @@ export default class RestaurantView extends Vue {
     return this.$store.state.restaurant.opinions;
   }
   get getImagePath() {
-    if (!_.isUndefined(this.restaurantInfo.restaurant.image[0])) {
-      debugger
-      return this.restaurantInfo.restaurant.image[0].imagefile.replace('backend:8000', window.location.host)
+    if (this.restaurantInfo.restaurant.image) {
+      if (!_.isUndefined(this.restaurantInfo.restaurant.image[0])) {
+        return this.restaurantInfo.restaurant.image[0].imagefile.replace('backend:8000', window.location.host)
+      }
     }
     return ''
   }

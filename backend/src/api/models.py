@@ -38,7 +38,7 @@ class Restaurant(models.Model):
         avgRating = 0
         for opinion in opinions:
             avgRating += ((opinion.food_review+opinion.climate_review+opinion.staff_review+opinion.price_review)/4)
-        return avgRating/opinions.size if opinion.size > 0 else 0
+        return avgRating/opinions.count() if opinions.count() > 0 else 0
 
 
 class Address(models.Model):
