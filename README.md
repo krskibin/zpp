@@ -64,11 +64,11 @@ zpp
    1. localhost:8000 —> Backend API
    2. localhost:8080 —> Frontend app
 
-## In case of trouble with first migrations
+## In case of troubles with first migrations
 - ./manage.py makemigrations users
 - ./manage.py sqlmigrate users 0001_initial
 
-## In case of real toruble with migrations
+## In case of real troubles with migrations
 - Delete migrations folders and go back to "In case of trouble with first migrations"
 
 ## Commands
